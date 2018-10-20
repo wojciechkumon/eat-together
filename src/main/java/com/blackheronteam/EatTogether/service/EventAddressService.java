@@ -100,11 +100,11 @@ public class EventAddressService {
             // lacto = lactofree
 
             Optional<User> organizer = userRepository.findById(event.getOrganizerId());
-            events.add(new MyEvent(
-                    organizer
-                            .orElseThrow(() ->
-                                    new IllegalArgumentException("User with id: " + event.getOrganizerId() + " not found")),
-                    event));
+            events.add(
+                    new MyEvent(organizer
+                            .orElseThrow(() -> new IllegalArgumentException("User with id: " + event.getOrganizerId() + " not found")),
+                            event)
+            );
 
         });
 
