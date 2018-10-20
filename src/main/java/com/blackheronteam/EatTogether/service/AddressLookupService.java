@@ -29,7 +29,6 @@ public class AddressLookupService {
 
 
         List<CarmenFeature> points = new ArrayList<>();
-
         Callback<GeocodingResponse> callback = new Callback<>() {
             @Override
             public void onResponse(@NotNull Call<GeocodingResponse> call, Response<GeocodingResponse> response) {
