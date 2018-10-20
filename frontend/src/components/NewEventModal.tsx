@@ -72,7 +72,7 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
     if (mealIndex >= 0 && !meals[mealIndex]) {
       meals[mealIndex] = {
         name: '',
-        ingredients: [],
+        ingredients: '',
         intolerances: []
       };
     }
@@ -180,8 +180,9 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
                 {
                   page > 1 &&
                   <div id="new-item-modal-form" className="flex-column justify-content-center">
+                    <h4>Meal #{page - 1}</h4>
                     <div className="form-group">
-                      <label htmlFor="event-name">Meal #{page - 1} name</label>
+                      <label htmlFor="event-name">Name</label>
                       <input value={meals[mealIndex].name}
                              onChange={e => {
                                const mealsCopy = copy(meals);
@@ -191,6 +192,22 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
                              type='text' className='form-control'
                              aria-describedby=''
                              placeholder='eg Sushi'/>
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="event-name">Ingredients</label>
+                      <input value={meals[mealIndex].ingredients}
+                             onChange={e => {
+                               const mealsCopy = copy(meals);
+                               mealsCopy[mealIndex].ingredients = e.target.value;
+                               this.setState({meals: mealsCopy});
+                             }}
+                             type='text' className='form-control'
+                             aria-describedby=''
+                             placeholder='eg bread, chicken'/>
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="event-name">Intolerances</label>
+                      lacto etc
                     </div>
                   </div>
                 }
