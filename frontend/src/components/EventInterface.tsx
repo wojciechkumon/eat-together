@@ -1,4 +1,4 @@
-import {Meal} from "./MealInterface";
+import {Meal} from "./Meal";
 
 export interface Event {
   name: string;

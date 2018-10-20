@@ -3,25 +3,33 @@ import {appConfig} from '../config/appConfig';
 import {checkStatus, withToken} from '../utils/api';
 import {copy} from '../utils/copy';
 import FoodCategorySelector from './FoodCategorySelector';
-import {Meal} from './MealInterface';
-import {intolerancesTypes} from "./intolerancesTypes";
+import {intolerancesTypes} from './intolerancesTypes';
+import {Meal} from './Meal';
 
 class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
   state = {
     page: 1,
-    name: '',
-    description: '',
-    estimatedPrice: 2.50,
+    name: 'Jack\'s Brunch',
+    description: 'Keep it simple, keep it vege. Just spring rolls and peanut butter cup pie for dessert',
+    estimatedPrice: 6.00,
     currency: 'USD',
     maxParticipants: 4,
-    cuisines: [],
-    dateTime: '',
-    streetWithNumber: '',
-    city: '',
-    phoneNumber: '',
-    zip: '',
-    country: '',
-    meals: []
+    cuisines: ['ASIAN', 'VEGE', 'CAKE'],
+    dateTime: '2018-10-23T10:00',
+    streetWithNumber: 'aleja Niepodległości 213',
+    city: 'Warszawa',
+    phoneNumber: '790458470',
+    zip: '02-086',
+    country: 'Polska',
+    meals: [{
+      name: 'Spring rolls',
+      ingredients: 'rice paper,cabbage,onion,carrot,red pepper,soy noodles',
+      intolerances: ['LACTO', 'GLUTEN', 'NUTS', 'FISH']
+    }, {
+      name: 'Peanut butter cup pie',
+      ingredients: 'graham crackers,coconut oil,sugar,coconut milk,peanut butter',
+      intolerances: ['LACTO', 'FISH']
+    }]
   };
 
   submit = e => {
@@ -209,8 +217,10 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
                     <div className="form-group">
                       {intolerancesTypes.map(intoleranceType =>
                         <div className="custom-control custom-checkbox">
-                          <input type="checkbox" className="custom-control-input" id={intoleranceType.name}/>
-                          <label className="custom-control-label" htmlFor={intoleranceType.name}>{intoleranceType.text}</label>
+                          <input type="checkbox" className="custom-control-input"
+                                 id={intoleranceType.name}/>
+                          <label className="custom-control-label"
+                                 htmlFor={intoleranceType.name}>{intoleranceType.text}</label>
                         </div>
                       )}
                     </div>

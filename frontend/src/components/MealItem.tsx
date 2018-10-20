@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Meal} from "./MealInterface";
+import {Meal} from "./Meal";
 import {intolerancesTypes} from "./intolerancesTypes";
 
 class MealItem extends React.PureComponent<MealItemProps> {
