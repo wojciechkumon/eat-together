@@ -1,19 +1,16 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-class FoodCategoryItem extends React.PureComponent<{}, FoodCategoryItemState> {
-  state = {
-    foodIcon: '',
-    foodName: ''
-  };
+class FoodCategoryItem extends React.PureComponent<FoodCategoryItemProps> {
 
   render() {
+    const {foodIcon, foodName, type} = this.props;
     return (
       <label className="btn shadow-none active">
-        <input type="checkbox" checked autoComplete="off"/>
-        <FoodIcon>{this.state.foodIcon}</FoodIcon>
+        <input type={type} checked autoComplete="off"/>
+        <FoodIcon>{foodIcon}</FoodIcon>
         <br/>
-        <small>{this.state.foodName}</small>
+        <small>{foodName}</small>
       </label>
     );
   }
@@ -25,9 +22,10 @@ const FoodIcon = styled.span`
             text-align: center;
 `;
 
-interface FoodCategoryItemState {
+interface FoodCategoryItemProps {
   foodIcon: string;
   foodName: string;
+  type: string;
 }
 
 export default FoodCategoryItem;
