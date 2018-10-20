@@ -37,7 +37,7 @@ public class EventController {
         return eventAddressService.getUserEvents(principal.getName());
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public List<Event> allEvents() {
         return eventAddressService.getAll();
     }

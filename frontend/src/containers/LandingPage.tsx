@@ -7,13 +7,19 @@ import MyEventsModal from '../components/MyEventsModal';
 import NewEventModal from '../components/NewEventModal';
 import SearchModal from '../components/SearchModal';
 import {appConfig} from '../config/appConfig';
+import {checkStatus, withToken} from '../utils/api';
 
 class LandingPage extends React.PureComponent<RouteComponentProps<{}>, LandingPageState> {
   state = {
     menuOpen: false,
     position: [52.232319, 20.984004],
-    zoom: 13
+    zoom: 13,
+    allEvents: []
   };
+
+  componentDidMount() {
+    this.findAll();
+  }
 
   logout = () => {
     window.localStorage.removeItem(appConfig.localStorage.tokenWrapperKey);
@@ -21,13 +27,13 @@ class LandingPage extends React.PureComponent<RouteComponentProps<{}>, LandingPa
   };
 
   findAll = () => {
-    // fetch(new Request(withToken(appConfig.api.events), {
-    //   method: 'GET'
-    // }))
-    //   .then(checkStatus)
-    //   .then(response => response.json()  )
-    //   .then(json => )
-    //   .catch(() => console.log('error'));
+    fetch(new Request(withToken(appConfig.api.events), {
+      method: 'GET'
+    }))
+      .then(checkStatus)
+      .then(response => response.json())
+      .then(json => this.setState({allEvents: json}))
+      .catch(() => console.log('error'));
   };
 
   render() {
@@ -107,6 +113,7 @@ interface LandingPageState {
   menuOpen: boolean;
   position: number[];
   zoom: number;
+  allEvents: any;
 }
 
 export default withRouter(LandingPage);
