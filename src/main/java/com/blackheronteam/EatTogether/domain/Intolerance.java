@@ -1,8 +1,7 @@
 package com.blackheronteam.EatTogether.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,8 +11,7 @@ import javax.persistence.Id;
 
 @Entity
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class Intolerance {
 
     @Id

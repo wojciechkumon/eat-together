@@ -1,8 +1,7 @@
 package com.blackheronteam.EatTogether.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,8 +12,7 @@ import java.util.List;
 
 @Entity
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class Meal {
 
     @Id
