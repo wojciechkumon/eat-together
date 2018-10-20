@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Event} from './EventInterface';
 import {foodCategories} from "./foodCategories";
+import MealItem from "./MealItem";
 
 class EventDetailsModal extends React.PureComponent<EventDetailsModalProps> {
 
@@ -29,13 +30,19 @@ class EventDetailsModal extends React.PureComponent<EventDetailsModalProps> {
                 <span><i className="far fa-clock"/>{event.dateTime}</span>
                 <span>{event.estimatedPrice}</span>
                 <span><i className="fa fa-user"/>
-                  {/*TODO {actualPersonsCount}/*/}
+                  {/* TODO {actualPersonsCount}/*/}
                   {event.maxParticipants}
                   </span>
               </div>
               <hr/>
               <div className="flex-column justify-content-between">
                 <p>{event.description}</p>
+              </div>
+              <hr/>
+              <div className="flex-column justify-content-between">
+                {event.meals.map(meal =>
+                  <MealItem meal={meal}/>
+                )}
               </div>
             </div>
           </div>
