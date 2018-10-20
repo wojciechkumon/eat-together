@@ -1,9 +1,11 @@
 package com.blackheronteam.EatTogether.domain;
 
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +20,10 @@ public class UserServiceInMemoryServiceImpl implements UserService {
 
 
     );
+
+
+    @Autowired
+    BCryptPasswordEncoder encoder;
 
 
     @Override
@@ -47,9 +53,10 @@ public class UserServiceInMemoryServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         log.info("loading by username " + username);
-        return users.stream().filter(u->u.getUsername().equals(username)).findAny().orElse(null);
+        return users.stream().map(u ->
+                new User(u.getUsername(), encoder.encode(u.getPassword()),u.getFirstName(), u.getLastName()))
+                .filter(u -> u.getUsername().equals(username)).findAny().orElse(null);
     }
 
     private List getAuthority() {
