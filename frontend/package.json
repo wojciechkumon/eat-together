@@ -12,12 +12,12 @@
     "serve:dist:context": "yarn serve:dist /demo/tp",
     "clean": "rimraf dist/*",
     "analyze": "yarn clean && webpack --mode production --colors --config webpack.prod.js --env.analyze",
-    "nlv": "node-license-validator --production --allow-licenses CPL MPL BSD BSD-2-Clause BSD-3-Clause BSD-4-Clause MIT Apache Apache-2.0 \"Apache License\" ISC WTFPl CC-BY-4.0 CC-BY-3.0 \"Public domain\" MIT/X11 BSD-like --allow-packages trip-proposal-demo-app",
+    "nlv": "node-license-validator --production --allow-licenses CPL MPL BSD BSD-2-Clause BSD-3-Clause BSD-4-Clause MIT Apache Apache-2.0 \"Apache License\" ISC WTFPl CC-BY-4.0 CC-BY-3.0 \"Public domain\" MIT/X11 BSD-like --allow-packages eat-together",
     "linter": "tslint --project .",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "zip": "bestzip trip-proposal-demo-app.zip dist/*"
+    "zip": "bestzip eat-together.zip dist/*"
   },
   "engines": {
     "node": ">=10.1.0",
