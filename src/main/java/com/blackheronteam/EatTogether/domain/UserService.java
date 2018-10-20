@@ -17,4 +17,5 @@ public interface UserService extends UserDetailsService {
 
     void updateUser(User currentUser);
 
+    void dropUsers();
 }

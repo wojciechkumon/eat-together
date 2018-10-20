@@ -1,13 +1,19 @@
 package com.blackheronteam.EatTogether.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import lombok.Builder;
-
 @Entity
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Address {
 
     @Id

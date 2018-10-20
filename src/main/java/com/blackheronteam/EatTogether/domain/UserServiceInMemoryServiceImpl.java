@@ -50,6 +50,11 @@ public class UserServiceInMemoryServiceImpl implements UserService {
     }
 
     @Override
+    public void dropUsers() {
+
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("loading by username " + username);
         return users.stream().map(u ->
