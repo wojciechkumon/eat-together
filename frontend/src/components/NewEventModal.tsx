@@ -216,8 +216,18 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
                     </div>
                     <div className="form-group">
                       {intolerancesTypes.map(intoleranceType =>
-                        <div className="custom-control custom-checkbox">
+                        <div key={intoleranceType.name} className="custom-control custom-checkbox">
                           <input type="checkbox" className="custom-control-input"
+                                 checked={meals[mealIndex].intolerances.includes(intoleranceType.name.toUpperCase())}
+                                 onChange={() => {
+                                   const mealsCopy = copy(meals);
+                                   if (mealsCopy[mealIndex].intolerances.includes(intoleranceType.name.toUpperCase())) {
+                                     mealsCopy[mealIndex].intolerances = mealsCopy[mealIndex].intolerances.filter(x => x !== intoleranceType.name.toUpperCase());
+                                   } else {
+                                     mealsCopy[mealIndex].intolerances = mealsCopy[mealIndex].intolerances.concat([intoleranceType.name.toUpperCase()]);
+                                   }
+                                   this.setState({meals: mealsCopy});
+                                 }}
                                  id={intoleranceType.name}/>
                           <label className="custom-control-label"
                                  htmlFor={intoleranceType.name}>{intoleranceType.text}</label>
