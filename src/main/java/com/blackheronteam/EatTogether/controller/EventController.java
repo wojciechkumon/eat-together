@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 
 @RestController
 @RequestMapping(value = "/events")
@@ -25,16 +27,9 @@ public class EventController {
     }
 
     @PostMapping
-    public void addEvent(@RequestBody EventDto eventDto) {
-        eventAddressService.saveAndUpdateCoordinates(eventDto);
+    public void addEvent(@RequestBody EventDto eventDto, Principal principal) {
+        eventAddressService.saveAndUpdateCoordinates(eventDto, principal.getName());
 
 
-    }
-
-    private void saveMeal(MealDto mealDto) {
-//        Meal meal = Meal.builder()
-//                .mealName(mealDto.getMealName())
-//                .ingredients(new ArrayList<>(mealDto.getIngredients()))
-//                .intolerances(mealDto.getIntolerances().stream().map(intolerance -> Intolerance.builder().intoleranceType(intolerance)))
     }
 }
