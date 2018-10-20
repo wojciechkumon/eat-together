@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {MyEvent} from './Event';
 import FoodCategorySelector from './FoodCategorySelector';
 
-// import EventCard from "./EventCard";
+import EventCard from "./EventCard";
 
 class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState> {
 
@@ -31,16 +31,16 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
     const {allEvents} = this.props;
     const {selectedCuisine, price} = this.state;
     let filteredEvents = !selectedCuisine ? allEvents
-      : allEvents.filter(myEvent => myEvent.event.cuisines.includes(selectedCuisine));
+      : allEvents.filter(myEvent => myEvent.event.cuisines.includes(selectedCuisine.toUpperCase()));
 
     return filteredEvents.filter(myEvent => myEvent.event.estimatedPrice <= price);
   };
 
   render() {
     const {selectedCuisine, price, distance, days} = this.state;
-    // const filteredEvents = filterEvents();
+    const filteredEvents = this.filterEvents();
 
-    // const {setMap} = this.props;
+    const {setMap} = this.props;
     return (
       <SearchModalDialog id="search-modal" className="modal fade" tabIndex={-1} role="dialog">
         <div className="modal-dialog m-0 mw-100" role="document">
@@ -110,84 +110,15 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
               </div>
 
               <SearchResult>
-                {/*TODO Loop fru events*/}
-                {/*<EventCard myEvent={} buttons={[*/}
-                {/*() => <a className="btn btn-sm btn-outline-dark" onClick={() => setMap([], 13)} href="#">See on map</a>,*/}
-                {/*() => <a className="btn btn-sm btn-outline-dark" onClick={() => setMap([], 13)} href="#">Details</a>*/}
-                {/*]}/>*/}
-                <div className="card">
-                  <div
-                    className="card-header background-et text-white d-flex justify-content-between">
-                    <span className="">Obiadek u Ani xD</span>
-                    <span className="">
-                                🥟🥟🥟
-                            </span>
-                  </div>
-                  <div className="card-header d-flex justify-content-between">
-                            <span>
-                                <i className="far fa-clock"/>
-                                12.10 15:00PM
-                            </span>
-                    <span className="">
-                                20 PLN
-                            </span>
-                    <span className="">
-                                <i className="fa fa-user"/>
-                                2/2
-                            </span>
-                  </div>
-                  <div className="card-body p-2">
-                    <h5 className="card-title d-flex justify-content-between">
-                      Ania
-                      <span><i className="fa fa-utensils"/><i className="fa fa-utensils"/></span>
-                    </h5>
-                    <p className="card-text">Some quick example text to build on the card title
-                      and make up the
-                      bulk
-                      of the card's content.</p>
-                    <div className="d-flex justify-content-around">
-                      <a className="btn btn-sm btn-outline-dark" href="#">See on map</a>
-                      <a className="btn btn-outline-success btn-sm card-link" href="#">Join</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="card">
-                  <div
-                    className="card-header background-et text-white d-flex justify-content-between">
-                    <span className="">Obiadek u Ani xD</span>
-                    <span className="">
-                                🥟🥟🥟
-                            </span>
-                  </div>
-                  <div className="card-header d-flex justify-content-between">
-                            <span>
-                                <i className="far fa-clock"/>
-                                12.10 15:00PM
-                            </span>
-                    <span className="">
-                                20 PLN
-                            </span>
-                    <span className="">
-                                <i className="fa fa-user"/>
-                                2/2
-                            </span>
-                  </div>
-                  <div className="card-body p-2">
-                    <h5 className="card-title d-flex justify-content-between">
-                      Ania
-                      <span><i className="fa fa-utensils"/><i
-                        className="fa fa-utensils"/></span>
-                    </h5>
-                    <p className="card-text">Some quick example text to build on the card title
-                      and make up the
-                      bulk
-                      of the card's content.</p>
-                    <div className="d-flex justify-content-around">
-                      <a className="btn btn-sm btn-outline-dark" href="#">See on map</a>
-                      <a className="btn btn-outline-success btn-sm card-link" href="#">Join</a>
-                    </div>
-                  </div>
-                </div>
+                {filteredEvents.map(myEvent =>
+                  <EventCard myEvent={myEvent} buttons={[
+                    () => <a className="btn btn-sm btn-outline-dark" onClick={() => {
+                      setMap([myEvent.event.latitude, myEvent.event.longitude], 13);
+                      (window as any).$('#search-modal').modal('hide');
+                    }} href="#">See on map</a>,
+                    () => <a className="btn btn-sm btn-outline-dark" onClick={() => setMap([], 13)} href="#">Details</a>
+                  ]}/>
+                )}
               </SearchResult>
             </div>
           </div>

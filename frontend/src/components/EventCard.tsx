@@ -4,9 +4,9 @@ import {foodCategories} from "./foodCategories";
 
 class EventCard extends React.PureComponent<EventCardProps> {
   hostRatingRender = (hostRating) => {
-    let result = '';
+    const result: any = [];
     for (let i = 0; i < hostRating; i++) {
-      result += <i className="fa fa-utensils"/>;
+      result.push(() => <i className="fa fa-utensils"/>);
     }
     return result
   };
@@ -36,13 +36,11 @@ class EventCard extends React.PureComponent<EventCardProps> {
         </div>
         <div className="card-body p-2">
           <h5 className="card-title d-flex justify-content-between">
-            {myEvent.organizer.firstName}<span>{this.hostRatingRender(myEvent.organizer.rating)}</span>
+            {myEvent.organizer.firstName}<span>{this.hostRatingRender(myEvent.organizer.rating).map(X => <X/>)}</span>
           </h5>
           <p className="card-text">{myEvent.event.description}</p>
           <div className="d-flex justify-content-around">
-            {buttons.map(button =>
-              button
-            )}
+            {buttons.map(MyButton => <MyButton/>)}
           </div>
         </div>
       </div>
@@ -52,7 +50,7 @@ class EventCard extends React.PureComponent<EventCardProps> {
 
 interface EventCardProps {
   myEvent: MyEvent,
-  buttons: React.ReactNode[]
+  buttons: any[]
 }
 
 export default EventCard;
