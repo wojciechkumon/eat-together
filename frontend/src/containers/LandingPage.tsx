@@ -94,7 +94,7 @@ class LandingPage extends React.PureComponent<RouteComponentProps<{}>, LandingPa
             <Map position={position} zoom={zoom} markers={markers}/>
           </div>
         </div>
-        <SearchModal setMap={setMap}/>
+        <SearchModal setMap={setMap} allEvents={allEvents}/>
         <AboutModal/>
         <NewEventModal/>
         <MyEventsModal/>
