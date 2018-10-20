@@ -13,15 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @Log4j2
 public class EventController {
 
-
-//    @RequestMapping(value = "/add", method = RequestMethod.POST)
-//    public void addEvent(@PathVariable String eventName) {
-//        log.info("Adding event: " + eventName);
-//    }
-
     @PostMapping("/add")
-    public ResponseEntity<?> newBazz(@RequestParam("name") String name){
-                log.info("Adding event: " + name);
+    public ResponseEntity<?> addEvent(@RequestParam("eventName") String name) {
+        log.info("Adding event: " + name);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
