@@ -2,7 +2,6 @@ package com.blackheronteam.EatTogether.service;
 
 import com.blackheronteam.EatTogether.domain.Address;
 import com.blackheronteam.EatTogether.domain.Cuisine;
-import com.blackheronteam.EatTogether.domain.CuisineType;
 import com.blackheronteam.EatTogether.domain.Event;
 import com.blackheronteam.EatTogether.dto.EventDto;
 import com.blackheronteam.EatTogether.repository.EventRepository;
@@ -42,62 +41,67 @@ public class EventAddressService {
         addressLookupService.getMap(addressQuery, updateCoordinates);
     }
 
-    // TODO
-    public void saveOperation(EventDto eventDto) {
-        Event event = new Event();
-        event.setName(eventDto.getName());
-        event.setDescription(eventDto.getDescription());
-        event.setEstimatedPrice(eventDto.getEstimatedPrice());
-        event.setCurrency(eventDto.getCurrency());
-        event.setMaxParticipants(eventDto.getMaxParticipants());
-
-        event.setAddress(Address.builder()
-                .country(eventDto.getCountry())
-                .city(eventDto.getCity())
-                .zip(eventDto.getZip())
-                .streetWithNumber(eventDto.getStreetWithNumber())
-                .phoneNumber(eventDto.getPhoneNumber())
-                .build()
-        );
-
-
-        event.setCuisines(eventDto.getCuisines().stream().map(cuisineType -> Cuisine.builder().cuisineType(CuisineType.valueOf(cuisineType)).build()).collect(Collectors.toList()));
-        event.setDateTime(LocalDateTime.now());
-//        event.setDateTime(LocalDateTime.parse(eventDto.getDateTime()));
-
-//        event.setLatitude();
-//        event.setLongitude();
-        // TODO long + lat
-        Event saved = eventRepository.save(event);
-        updateEventAddressCoordinates(saved);
-
-
-        log.info("Event: " + event.toString() + " created");
-    }
-
-    public void saveOperation(EventDto eventDto, Address address) {
-        Event event = new Event();
-        event.setName(eventDto.getName());
-        event.setDescription(eventDto.getDescription());
-        event.setEstimatedPrice(eventDto.getEstimatedPrice());
-        event.setCurrency(eventDto.getCurrency());
-        event.setMaxParticipants(eventDto.getMaxParticipants());
-
-        event.setAddress(address);
-
-
-        event.setCuisines(eventDto.getCuisines().stream().map(cuisineType -> Cuisine.builder().cuisineType(CuisineType.valueOf(cuisineType)).build()).collect(Collectors.toList()));
-//        event.setDateTime(LocalDateTime.now());
-        event.setDateTime(LocalDateTime.parse(eventDto.getDateTime()));
-
-//        event.setLatitude();
-//        event.setLongitude();
-        // TODO long + lat
-//        Event saved = eventRepository.save(event);
+//    // TODO
+//    public void saveOperation(EventDto eventDto) {
+//        Event event = new Event();
+//        event.setName(eventDto.getName());
+//        event.setDescription(eventDto.getDescription());
+//        event.setEstimatedPrice(eventDto.getEstimatedPrice());
+//        event.setCurrency(eventDto.getCurrency());
+//        event.setMaxParticipants(eventDto.getMaxParticipants());
 //
-//        updateEventAddressCoordinates(event);
+//        event.setAddress(Address.builder()
+//                .country(eventDto.getCountry())
+//                .city(eventDto.getCity())
+//                .zip(eventDto.getZip())
+//                .streetWithNumber(eventDto.getStreetWithNumber())
+//                .phoneNumber(eventDto.getPhoneNumber())
+//                .build()
+//        );
+//
+//
+//        event.setCuisines(eventDto.getCuisines().stream().map(cuisineType -> Cuisine.builder().cuisineType(cuisineType).build()).collect(Collectors.toList()));
+//        event.setDateTime(LocalDateTime.now());
+////        event.setDateTime(LocalDateTime.parse(eventDto.getDateTime()));
+//
+////        event.setLatitude();
+////        event.setLongitude();
+//        // TODO long + lat
+//        Event saved = eventRepository.save(event);
+//        updateEventAddressCoordinates(saved);
 //
 //
 //        log.info("Event: " + event.toString() + " created");
+//    }
+//
+//    public void saveOperation(EventDto eventDto, Address address) {
+//        Event event = new Event();
+//        event.setName(eventDto.getName());
+//        event.setDescription(eventDto.getDescription());
+//        event.setEstimatedPrice(eventDto.getEstimatedPrice());
+//        event.setCurrency(eventDto.getCurrency());
+//        event.setMaxParticipants(eventDto.getMaxParticipants());
+//
+//        event.setAddress(address);
+//
+//
+//        event.setCuisines(eventDto.getCuisines().stream().map(cuisineType -> Cuisine.builder().cuisineType(cuisineType).build()).collect(Collectors.toList()));
+////        event.setDateTime(LocalDateTime.now());
+//        event.setDateTime(LocalDateTime.parse(eventDto.getDateTime()));
+//
+////        event.setLatitude();
+////        event.setLongitude();
+//        // TODO long + lat
+////        Event saved = eventRepository.save(event);
+////
+////        updateEventAddressCoordinates(event);
+////
+////
+////        log.info("Event: " + event.toString() + " created");
+//    }
+
+
+    public void dropAll() {
+        eventRepository.deleteAll();
     }
 }
