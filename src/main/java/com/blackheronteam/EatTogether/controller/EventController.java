@@ -38,6 +38,8 @@ public class EventController {
         event.setCurrency(new Currency(currency));
         event.setNumberOfParticipants(numberOfParticipants);
 
-        return new ResponseEntity<>(event, HttpStatus.OK);
+        log.info("Event: " + event.toString() + " created");
+
+        return new ResponseEntity<>(event.toString(), HttpStatus.OK);
     }
 }
