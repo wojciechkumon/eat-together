@@ -66,7 +66,7 @@ public class EventDataGenerator implements Generator {
                                         "eggs," +
                                         "plain flour")
                                 .build()
-                        ))
+                ))
                 .description("Soft, creamy goat's cheese or a deliciously strong blue cheese both work well in this easy veggie supper that's on the table in just 20 minutes and Green Burger")
                 .organizerId(userList.get(0).getId())
                 .build();
@@ -77,7 +77,7 @@ public class EventDataGenerator implements Generator {
                 .address(Address.builder()
                         .city("Warszawa")
                         .phoneNumber("604 754 ***")
-                        .streetWithNumber("Zelazna 59" )
+                        .streetWithNumber("Zelazna 59")
                         .country("Polska")
                         .zip("00-848\"").build())
                 .currency("PLN")
@@ -110,7 +110,7 @@ public class EventDataGenerator implements Generator {
                                 .build()
                 ))
                 .description("Nothing soothes, nourishes and comforts like homemade chicken broth. Dumplings filled with tender pork, flavored with fresh ginger, green onion, and sesame oil. ")
-                .organizerId(userList.get(0).getId())
+                .organizerId(userList.get(2).getId())
                 .build();
 
         Event event_3 = Event.builder()
@@ -147,9 +147,39 @@ public class EventDataGenerator implements Generator {
                 .organizerId(userList.get(1).getId())
                 .build();
 
+        Event event_4 = Event.builder()
+                .cuisines(Collections.singletonList(Cuisine.builder().cuisineType(CuisineType.PASTA).build()))
+                .address(Address.builder()
+                        .city("Warszawa")
+                        .phoneNumber("500 430 ***")
+                        .country("Polska")
+                        .streetWithNumber("Wybrzeze Kosciuszkowskie 20")
+                        .zip("00-390").build())
+                .currency("EUR")
+                .dateTime(LocalDateTime.of(2018, 11, 12, 15, 00))
+                .estimatedPrice(150L)
+                .maxParticipants(2L)
+                .name("Italian pasta")
+                .meals(Arrays.asList(
+                        Meal.builder()
+                                .name("Spaghetti Bolognese")
+                                .intolerances(Collections.singletonList(
+                                        Intolerance.builder().intoleranceType(IntoleranceType.FISH).build()))
+                                .ingredients("olive oil, " +
+                                        "smoked streaky bacon, " +
+                                        "onions, " +
+                                        "carrots, " +
+                                        "garlic cloves, " +
+                                        "beef mince")
+                                .build()
+                ))
+                .description("Our best ever spaghetti Bolognese is super easy and a true Italian classic with a meaty, chilli sauce.")
+                .organizerId(userList.get(1).getId())
+                .build();
 
         eventAddressService.saveAndUpdateCoordinates(event);
         eventAddressService.saveAndUpdateCoordinates(event_2);
         eventAddressService.saveAndUpdateCoordinates(event_3);
+        eventAddressService.saveAndUpdateCoordinates(event_4);
     }
 }
