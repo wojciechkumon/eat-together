@@ -71,6 +71,47 @@ public class EventDataGenerator implements Generator {
                 .organizerId(userList.get(0).getId())
                 .build();
 
+        Event event_2 = Event.builder()
+                .cuisines(Arrays.asList(
+                        Cuisine.builder().cuisineType(CuisineType.DUMPLINGS).build()))
+                .address(Address.builder()
+                        .city("Warszawa")
+                        .phoneNumber("604 754 ***")
+                        .streetWithNumber("Zelazna 59" )
+                        .country("Polska")
+                        .zip("00-848\"").build())
+                .currency("PLN")
+                .dateTime(LocalDateTime.of(2018, 10, 30, 14, 00))
+                .estimatedPrice(15L)
+                .maxParticipants(4L)
+                .name("Traditional polish dinner")
+                .meals(Arrays.asList(
+                        Meal.builder()
+                                .name("Homemade Dumplings")
+                                .intolerances(Collections.singletonList(Intolerance.builder()
+                                        .intoleranceType(IntoleranceType.FISH).build()))
+                                .ingredients("four," +
+                                        "vegetable oil," +
+                                        "parsley ," +
+                                        "pork," +
+                                        "cabbage,")
+                                .build(),
+                        Meal.builder()
+                                .name("Broth ")
+                                .intolerances(Collections.singletonList(Intolerance.builder()
+                                        .intoleranceType(IntoleranceType.FISH).build()))
+                                .ingredients("chicken," +
+                                        "celery," +
+                                        "carrots," +
+                                        "onion," +
+                                        "garlic," +
+                                        "parsley," +
+                                        "thyme")
+                                .build()
+                ))
+                .description("Nothing soothes, nourishes and comforts like homemade chicken broth. Dumplings filled with tender pork, flavored with fresh ginger, green onion, and sesame oil. ")
+                .organizerId(userList.get(0).getId())
+                .build();
 
         Event event_3 = Event.builder()
                 .cuisines(Arrays.asList(
@@ -108,6 +149,7 @@ public class EventDataGenerator implements Generator {
 
 
         eventAddressService.saveAndUpdateCoordinates(event);
+        eventAddressService.saveAndUpdateCoordinates(event_2);
         eventAddressService.saveAndUpdateCoordinates(event_3);
     }
 }
