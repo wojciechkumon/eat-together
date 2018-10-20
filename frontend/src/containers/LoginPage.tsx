@@ -26,7 +26,14 @@ class LoginPage extends React.PureComponent<RouteComponentProps<{}>, LoginPageSt
       }
     }))
       .then(checkStatus)
-      .then(() => this.props.history.push(appConfig.routes.landingPage))
+      .then(response => response.json())
+      .then(json => {
+        window.localStorage.setItem(appConfig.localStorage.tokenWrapperKey, JSON.stringify({
+          token: json.access_token,
+          email
+        }));
+        this.props.history.push(appConfig.routes.landingPage)
+      })
       .catch(() => this.setState({error: true, loggingIn: false}))
   };
 
@@ -48,14 +55,16 @@ class LoginPage extends React.PureComponent<RouteComponentProps<{}>, LoginPageSt
                 <input value={email} onChange={e => this.setState({email: e.target.value})}
                        disabled={loggingIn}
                        type="email" className="form-control" id="login-email"
-                       aria-describedby="emailHelp" style={error ? {borderColor: 'red', borderWidth: '1px'} : undefined}
+                       aria-describedby="emailHelp"
+                       style={error ? {borderColor: 'red', borderWidth: '1px'} : undefined}
                        placeholder="Email" autoComplete="username"/>
               </div>
               <div className="form-group">
                 <input value={password} onChange={e => this.setState({password: e.target.value})}
                        disabled={loggingIn}
                        type="password" className="form-control" id="exampleInputPassword1"
-                       placeholder="Password" style={error ? {borderColor: 'red', borderWidth: '1px'} : undefined}
+                       placeholder="Password"
+                       style={error ? {borderColor: 'red', borderWidth: '1px'} : undefined}
                        autoComplete="current-password"/>
               </div>
               <button type="submit" className="btn btn-secondary" disabled={loggingIn}>Eat & Cook!
