@@ -1,54 +1,52 @@
 package com.blackheronteam.EatTogether.service;
 
-import com.blackheronteam.EatTogether.domain.*;
+import com.blackheronteam.EatTogether.domain.Address;
+import com.blackheronteam.EatTogether.domain.User;
+import com.blackheronteam.EatTogether.repository.EventRepository;
 import com.blackheronteam.EatTogether.service.datagenerators.AddressDataGenerator;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.blackheronteam.EatTogether.service.datagenerators.EventDataGenerator;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Collections;
 
 @Service
+@RequiredArgsConstructor
 public class InitUsersService {
 
-    @Autowired
-    BCryptPasswordEncoder encoder;
-    boolean delete = true;
-    @Autowired
-    private UserService userService;
+    private final BCryptPasswordEncoder encoder;
+    private final UserService userService;
+    private final EventAddressService eventAddressService;
+    private final AddressDataGenerator addressDataGenerator;
+    private final EventRepository eventRepository;
 
-    @Autowired
-    private EventAddressService eventAddressService;
-
-    @Autowired
-    private AddressDataGenerator addressDataGenerator;
-
-
-    public InitUsersService() {
-    }
+    private final EventDataGenerator eventDataGenerator;
 
     @PostConstruct
     public void init() {
-        initUsers();
+        cleanup();
 
 //        addressDataGenerator.generate();
+
+        initUsers();
+        eventDataGenerator.generate();
 
 
     }
 
-    private void initUsers() {
-        if (delete) {
-            userService.dropUsers();
-        }
+    private void cleanup() {
+        eventRepository.deleteAll();
+        userService.dropUsers();
+    }
 
+    private void initUsers() {
         userService.saveUser(User.builder()
                 .firstName("Michal")
                 .lastName("B.")
                 .username("mic@gmail.com")
                 .password(encoder.encode("asdf1"))
+                .rating(4)
                 .address(Address.builder()
                         .city("Warszawa")
                         .phoneNumber("")
@@ -60,6 +58,7 @@ public class InitUsersService {
                 .lastName("F.")
                 .username("prz@gmail.com")
                 .password(encoder.encode("asdf2"))
+                .rating(5)
                 .address(Address.builder()
                         .city("Warszawa")
                         .phoneNumber("")
@@ -71,6 +70,7 @@ public class InitUsersService {
                 .lastName("B.")
                 .username("gab@gmail.com")
                 .password(encoder.encode("asdf"))
+                .rating(4)
                 .address(Address.builder()
                         .city("Warszawa")
                         .phoneNumber("")
@@ -82,6 +82,7 @@ public class InitUsersService {
                 .lastName("K.")
                 .username("woj@gmail.com")
                 .password(encoder.encode("asdf3"))
+                .rating(5)
                 .address(Address.builder()
                         .city("Warszawa")
                         .phoneNumber("")
@@ -89,24 +90,24 @@ public class InitUsersService {
                         .zip("00-844").build())
                 .build());
 
-        eventAddressService.saveAndUpdateCoordinates(
-                Event.builder()
-                        .address(Address.builder()
-                                .city("Warszawa")
-                                .phoneNumber("")
-                                .streetWithNumber("Grzybowska 63")
-                                .zip("00-844").build())
-                        .cuisines(Arrays.asList(Cuisine.builder().cuisineType(CuisineType.CAKE).build()))
-                        .currency("USD")
-                        .dateTime(LocalDateTime.now())
-                        .description("obiadek u babci")
-                        .name("dinner")
-                        .estimatedPrice(100L)
-                        .meals(Collections.emptyList())
-                        .maxParticipants(6L)
-                        .build()
-
-        );
+//        eventAddressService.saveAndUpdateCoordinates(
+//                Event.builder()
+//                        .address(Address.builder()
+//                                .city("Warszawa")
+//                                .phoneNumber("")
+//                                .streetWithNumber("Grzybowska 63")
+//                                .zip("00-844").build())
+//                        .cuisines(Arrays.asList(Cuisine.builder().cuisineType(CuisineType.CAKE).build()))
+//                        .currency("USD")
+//                        .dateTime(LocalDateTime.now())
+//                        .description("obiadek u babci")
+//                        .name("dinner")
+//                        .estimatedPrice(100L)
+//                        .meals(Collections.emptyList())
+//                        .maxParticipants(6L)
+//                        .build()
+//
+//        );
     }
 
 }

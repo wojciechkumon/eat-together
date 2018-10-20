@@ -84,7 +84,7 @@ public class EventAddressService {
 
     private Meal mapMeal(MealDto mealDto) {
         return Meal.builder()
-                .mealName(mealDto.getMealName())
+                .name(mealDto.getName())
                 .ingredients(mealDto.getIngredients())
                 .intolerances(mealDto.getIntolerances().stream().map(intoleranceType -> Intolerance.builder().intoleranceType(intoleranceType).build()).collect(Collectors.toList())).build();
     }
@@ -94,17 +94,17 @@ public class EventAddressService {
         return eventRepository.findByOrganizerId(user.getId());
     }
 
-    public List<MyEvent> getAll(Principal principal) {
+        public List<MyEvent> getAll(Principal principal) {
         List<MyEvent> events = new ArrayList<>();
         eventRepository.findAll().forEach(event -> {
             // lacto = lactofree
 
             Optional<User> organizer = userRepository.findById(event.getOrganizerId());
-            events.add(new MyEvent(
-                    organizer
-                            .orElseThrow(() ->
-                                    new IllegalArgumentException("User with id: " + event.getOrganizerId() + " not found")),
-                    event));
+            events.add(
+                    new MyEvent(organizer
+                            .orElseThrow(() -> new IllegalArgumentException("User with id: " + event.getOrganizerId() + " not found")),
+                            event)
+            );
 
         });
 

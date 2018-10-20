@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("addressDataGenerator")
-public class AddressDataGenerator {
+public class AddressDataGenerator implements Generator {
 
     @Autowired
     AddressRepository addressRepository;
 
 
+    @Override
     public void generate() {
 
         Address address1 = Address.builder()

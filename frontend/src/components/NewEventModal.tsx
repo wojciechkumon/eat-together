@@ -60,6 +60,7 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
       .then(checkStatus)
       .then(response => {
         console.log('success', response);
+        (window as any).$('#new-event-modal').modal('hide');
       })
       .catch(() => console.log('error'));
   };

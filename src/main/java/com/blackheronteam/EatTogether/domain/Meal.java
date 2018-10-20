@@ -16,7 +16,7 @@ public class Meal {
     @Id
     @GeneratedValue
     Long id;
-    String mealName;
+    String name;
     String ingredients;
     @OneToMany(cascade = CascadeType.ALL)
     List<Intolerance> intolerances;
