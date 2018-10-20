@@ -4,6 +4,7 @@ import com.blackheronteam.EatTogether.domain.CuisineType;
 
 import java.util.List;
 
+import com.blackheronteam.EatTogether.domain.Meal;
 import lombok.Data;
 
 @Data
@@ -24,4 +25,5 @@ public class EventDto {
     String phoneNumber;
     String zip;
     String country;
+    List<MealDto> meals;
 }
