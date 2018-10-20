@@ -51,7 +51,7 @@ class SearchModal extends React.PureComponent<{}, SearchModalState> {
                             <small>Distant</small>
                         </span>
                 </label>
-                <FoodCategorySelector type="radio"/>
+                <FoodCategorySelector type="radio" selected={[/* TODO */]} toggle={() => console.log('x')}/>
               </div>
 
               <div className="d-flex flex-nowrap justify-content-center" data-toggle="collapse"

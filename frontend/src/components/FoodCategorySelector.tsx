@@ -1,42 +1,38 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import FoodCategoryItem from "./FoodCategoryItem";
-
-const foodCategories = [
-  {foodIcon: '🥟', foodName: 'Duplings'},
-  {foodIcon: '🍰', foodName: 'Cake'},
-  {foodIcon: '🥩', foodName: 'Steak'},
-  {foodIcon: '🍔', foodName: 'Burger'},
-  {foodIcon: '🥢', foodName: 'Asian'},
-  {foodIcon: '🥗', foodName: 'Vege'},
-  {foodIcon: '🥣', foodName: 'Soup'},
-  {foodIcon: '🍝', foodName: 'Pasta'},
-];
+import {foodCategories} from './foodCategories';
+import FoodCategoryItem from './FoodCategoryItem';
 
 class FoodCategorySelector extends React.PureComponent<FoodCategorySelectorProps> {
 
   render() {
-    const {type} = this.props;
+    const {type, selected, toggle} = this.props;
 
     return (
       <CategorySlider className="categories-slider d-flex btn-group btn-group-toggle"
                       data-toggle="buttons">
-        {foodCategories.map(function (foodCategory) {
-          return <FoodCategoryItem foodIcon={foodCategory.foodIcon} foodName={foodCategory.foodName} type={type}/>;
-        })}
+        {foodCategories.map(foodCategory =>
+          <FoodCategoryItem key={foodCategory.foodName}
+                            foodIcon={foodCategory.foodIcon}
+                            foodName={foodCategory.foodName}
+                            selected={selected.includes(foodCategory.foodName)}
+                            toggle={toggle}
+                            type={type}/>)}
       </CategorySlider>
     )
   }
 }
 
 const CategorySlider = styled.div`
-            overflow-x: auto;
-            overflow-y: hidden;
-            overflow-scrolling: touch;
-        `;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overflow-scrolling: touch;
+`;
 
 interface FoodCategorySelectorProps {
   type: string;
+  selected: string[];
+  toggle: (name: string) => void;
 }
 
 export default FoodCategorySelector;
