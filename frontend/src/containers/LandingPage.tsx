@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import AboutModal from '../components/AboutModal';
+import Map from '../components/Map';
 import MyEventsModal from '../components/MyEventsModal';
 import NewEventModal from '../components/NewEventModal';
 import SearchModal from '../components/SearchModal';
@@ -57,7 +58,7 @@ class LandingPage extends React.PureComponent<{}, LandingPageState> {
             </a>
           </nav>
           <div className="d-flex flex-column flex-grow-1">
-            <div id="mapid" className="h-100 flex-grow-1"/>
+            <Map/>
           </div>
         </div>
         <SearchModal/>
