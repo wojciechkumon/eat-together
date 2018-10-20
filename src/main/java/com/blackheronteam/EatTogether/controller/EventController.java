@@ -1,7 +1,7 @@
 package com.blackheronteam.EatTogether.controller;
 
+import com.blackheronteam.EatTogether.domain.Event;
 import com.blackheronteam.EatTogether.dto.EventDto;
-import com.blackheronteam.EatTogether.dto.MealDto;
 import com.blackheronteam.EatTogether.service.EventAddressService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 
 @RestController
@@ -29,7 +30,15 @@ public class EventController {
     @PostMapping
     public void addEvent(@RequestBody EventDto eventDto, Principal principal) {
         eventAddressService.saveAndUpdateCoordinates(eventDto, principal.getName());
+    }
 
+    @GetMapping("/my")
+    public List<Event> myEvents(Principal principal) {
+        return eventAddressService.getUserEvents(principal.getName());
+    }
 
+    @GetMapping("/all")
+    public List<Event> allEvents() {
+        return eventAddressService.getAll();
     }
 }

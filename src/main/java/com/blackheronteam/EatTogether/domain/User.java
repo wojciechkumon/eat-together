@@ -6,7 +6,9 @@ import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -26,9 +28,8 @@ public class User implements UserDetails {
     private String password;
     private String firstName;
     private String lastName;
-    @OneToOne(targetEntity = Address.class)
-    @JoinColumn(name="Address" , referencedColumnName="id",nullable=false)
-    Address address;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Address address;
 /*    @OneToMany(
             cascade = CascadeType.ALL,
             orphanRemoval = true

@@ -28,7 +28,7 @@ public class Event {
 
     LocalDateTime dateTime;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Address address;
     Double latitude;
     Double longitude;

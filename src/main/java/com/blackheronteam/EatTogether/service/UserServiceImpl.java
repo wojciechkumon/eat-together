@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user) {
-        addressRepository.save(user.getAddress());
+//        addressRepository.save(user.getAddress());
         userRepository.save(user);
     }
 
