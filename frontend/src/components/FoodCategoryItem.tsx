@@ -6,7 +6,7 @@ class FoodCategoryItem extends React.PureComponent<FoodCategoryItemProps> {
   render() {
     const {foodIcon, foodName, type} = this.props;
     return (
-      <label className="btn shadow-none active">
+      <label className="btn shadow-none">
         <input type={type} checked autoComplete="off"/>
         <FoodIcon>{foodIcon}</FoodIcon>
         <br/>
