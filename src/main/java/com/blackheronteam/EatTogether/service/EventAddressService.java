@@ -4,22 +4,25 @@ import com.blackheronteam.EatTogether.domain.Address;
 import com.blackheronteam.EatTogether.domain.Cuisine;
 import com.blackheronteam.EatTogether.domain.CuisineType;
 import com.blackheronteam.EatTogether.domain.Event;
-import com.blackheronteam.EatTogether.domain.User;
 import com.blackheronteam.EatTogether.domain.Intolerance;
 import com.blackheronteam.EatTogether.domain.Meal;
+import com.blackheronteam.EatTogether.domain.User;
 import com.blackheronteam.EatTogether.dto.EventDto;
 import com.blackheronteam.EatTogether.dto.MealDto;
 import com.blackheronteam.EatTogether.repository.AddressRepository;
 import com.blackheronteam.EatTogether.repository.EventRepository;
 import com.blackheronteam.EatTogether.repository.UserRepository;
 import com.mapbox.geojson.Point;
-import lombok.extern.log4j.Log4j2;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
+
+import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Service(value = "eventAddressService")
@@ -90,6 +93,8 @@ public class EventAddressService {
                 .intolerances(mealDto.getIntolerances().stream().map(intoleranceType -> Intolerance.builder().intoleranceType(intoleranceType).build()).collect(Collectors.toList())).build();
     }
 
-
-
+    public List<Event> getUserEvents(String name) {
+        User user = userRepository.findUserByUsername(name);
+        return eventRepository.findByOrganizerId(user.getId());
+    }
 }
