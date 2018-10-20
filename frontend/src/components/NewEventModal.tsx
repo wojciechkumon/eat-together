@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {appConfig} from '../config/appConfig';
 import {checkStatus, withToken} from '../utils/api';
+import {copy} from '../utils/copy';
 import FoodCategorySelector from './FoodCategorySelector';
 import {Meal} from './MealInterface';
 
@@ -24,8 +25,7 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
 
   submit = e => {
     e.preventDefault();
-    const {name, description, estimatedPrice, currency, maxParticipants, dateTime, streetWithNumber, city, zip, cuisines, phoneNumber, country} = this.state;
-    console.log(name, description, estimatedPrice, currency, maxParticipants, dateTime, streetWithNumber, city, zip, cuisines);
+    const {name, description, estimatedPrice, currency, maxParticipants, dateTime, streetWithNumber, city, zip, cuisines, phoneNumber, country, meals} = this.state;
 
     fetch(new Request(withToken(appConfig.api.events), {
       method: 'POST',
@@ -41,7 +41,8 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
         city,
         phoneNumber,
         zip,
-        country
+        country,
+        meals
       })
     }))
       .then(checkStatus)
@@ -178,18 +179,22 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
                     <div className="form-group">
                       <label htmlFor="event-name">Meal #{page - 1} name</label>
                       <input value={meals[mealIndex].name}
-                             onChange={e => this.setState({name: e.target.value})}
-                             type="text" className="form-control" id="event-name"
-                             aria-describedby=""
-                             placeholder="eg Sushi Kushi"/>
-                      <small>Use creative name to attract guests</small>
+                             onChange={e => {
+                               const mealsCopy = copy(meals);
+                               mealsCopy[mealIndex].name = e.target.value;
+                               this.setState({meals: mealsCopy});
+                             }}
+                             type='text' className='form-control'
+                             aria-describedby=''
+                             placeholder='eg Sushi'/>
                     </div>
                   </div>
                 }
                 <div className="modal-footer d-flex justify-content-between">
                   {page > 1
                     ?
-                    <button type="button" onClick={() => this.setState({page: this.state.page - 1})}
+                    <button type="button"
+                            onClick={() => this.setState({page: this.state.page - 1})}
                             className="btn-outline-info btn btn-secondary">Back
                     </button>
                     :
@@ -198,8 +203,8 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
                     </button>
                   }
 
-                  <button className="btn btn-outline-success"
-                          onClick={() => this.setState({page: this.state.page + 1})}>Add Meal
+                  <button className="btn btn-outline-success" type="button"
+                          onClick={() => this.setState({page: this.state.page + 1})}>Next Meal
                   </button>
                   {page > 1 &&
                   <button type="submit" className="btn btn-outline-success">Finish</button>
