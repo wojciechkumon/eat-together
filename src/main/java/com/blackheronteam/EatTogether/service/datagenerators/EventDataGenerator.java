@@ -42,7 +42,7 @@ public class EventDataGenerator implements Generator {
                 .name("Vegetarian supper: Gnocchi and Burger")
                 .meals(Arrays.asList(
                         Meal.builder()
-                                .mealName("Gnocchi with mushrooms & blue cheese")
+                                .name("Gnocchi with mushrooms & blue cheese")
                                 .intolerances(Collections.singletonList(Intolerance.builder()
                                         .intoleranceType(IntoleranceType.FISH).build()))
                                 .ingredients("2 x 400g packs fresh gnocchi\n" +
@@ -62,7 +62,7 @@ public class EventDataGenerator implements Generator {
                                         ", chopped").build(),
 
                         Meal.builder()
-                                .mealName("Green burgers")
+                                .name("Green burgers")
                                 .intolerances(Collections.singletonList(Intolerance.builder()
                                         .intoleranceType(IntoleranceType.FISH).build()))
                                 .ingredients("2 tbsp olive oil\n" +
