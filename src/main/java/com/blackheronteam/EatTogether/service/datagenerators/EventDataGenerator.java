@@ -46,19 +46,14 @@ public class EventDataGenerator implements Generator {
                                 .intolerances(Collections.singletonList(Intolerance.builder()
                                         .intoleranceType(IntoleranceType.FISH).build()))
                                 .ingredients("2 x 400g packs fresh gnocchi\n" +
-                                        "\n" +
                                         "1 tbsp olive oil\n" +
-                                        "\n" +
                                         "knob of butter\n" +
-                                        "\n" +
                                         "1 large onion\n" +
-                                        "\n" +
                                         ", roughly chopped\n" +
                                         "500g small Forestière or Portobello mushrooms, sliced\n" +
                                         "2 large garlic cloves, chopped\n" +
                                         "150g pack creamy blue cheese (we used Danish blue)\n" +
                                         "small pack parsley\n" +
-                                        "\n" +
                                         ", chopped").build(),
 
                         Meal.builder()
@@ -66,18 +61,13 @@ public class EventDataGenerator implements Generator {
                                 .intolerances(Collections.singletonList(Intolerance.builder()
                                         .intoleranceType(IntoleranceType.FISH).build()))
                                 .ingredients("2 tbsp olive oil\n" +
-                                        "\n" +
                                         "2 onions\n" +
-                                        "\n" +
                                         ", finely chopped\n" +
                                         "250g bag spinach\n" +
-                                        "\n" +
                                         "5 slices white bread, blitzed into breadcrumbs (or 150g dried breadcrumbs)\n" +
                                         "good grating of fresh nutmeg\n" +
-                                        "\n" +
                                         "100g mature cheddar, grated\n" +
                                         "40g parmesan\n" +
-                                        "\n" +
                                         ", finely grated\n" +
                                         "1-2 large eggs, beaten\n" +
                                         "3 tbsp plain flour").build()
