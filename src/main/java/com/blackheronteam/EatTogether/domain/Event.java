@@ -1,14 +1,14 @@
 package com.blackheronteam.EatTogether.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import java.math.BigInteger;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
+@ToString
+@Setter
 public class Event {
 
     @Id
@@ -16,7 +16,7 @@ public class Event {
     Long id;
     Long organizerId;
     Long numberOfParticipants;
-    BigInteger estimatedPrice;
+    BigDecimal estimatedPrice;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="Currency" , referencedColumnName="id",nullable=false)
     Currency currency;
@@ -24,4 +24,5 @@ public class Event {
     String description;
     Double latitude;
     Double longitude;
+    String name;
 }
