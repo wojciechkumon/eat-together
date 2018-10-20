@@ -18,11 +18,6 @@ class FoodCategorySelector extends React.PureComponent<FoodCategorySelectorProps
   render() {
     const {type} = this.props;
 
-    //   const foodCategories = {};
-    //   {
-    //     'asdsa', 'sdad'
-    //   }
-    // }
     return (
       <CategorySlider className="categories-slider d-flex btn-group btn-group-toggle"
                       data-toggle="buttons">

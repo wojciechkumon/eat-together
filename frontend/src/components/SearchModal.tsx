@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import FoodCategorySelector from "./FoodCategorySelector";
 
 class SearchModal extends React.PureComponent<{}, SearchModalState> {
 
@@ -50,57 +51,7 @@ class SearchModal extends React.PureComponent<{}, SearchModalState> {
                             <small>Distant</small>
                         </span>
                 </label>
-                <SearchCategory className="categories-slider d-flex btn-group btn-group-toggle"
-                                data-toggle="buttons">
-                  <label className="btn shadow-none active ">
-                    <input type="checkbox" checked autoComplete="off"/>
-                    <span>🥟</span>
-                    <br/>
-                    <small>Dumplings</small>
-                  </label>
-                  <label className="btn shadow-none active">
-                    <input type="checkbox" autoComplete="off"/>
-                    <span>🍰</span>
-                    <br/>
-                    <small>Cake</small>
-                  </label>
-                  <label className="btn shadow-none ">
-                    <input type="checkbox" autoComplete="off"/>
-                    <span>🥩</span>
-                    <br/>
-                    <small>Steak</small>
-                  </label>
-                  <label className="btn shadow-none active ">
-                    <input type="checkbox" checked autoComplete="off"/>
-                    <span>🍔</span>
-                    <br/>
-                    <small>Burgers</small>
-                  </label>
-                  <label className="btn shadow-none active ">
-                    <input type="checkbox" checked autoComplete="off"/>
-                    <span>🥢</span>
-                    <br/>
-                    <small>Asian</small>
-                  </label>
-                  <label className="btn shadow-none active ">
-                    <input type="checkbox" checked autoComplete="off"/>
-                    <span>🥗</span>
-                    <br/>
-                    <small>Vege</small>
-                  </label>
-                  <label className="btn shadow-none active ">
-                    <input type="checkbox" checked autoComplete="off"/>
-                    <span>🥣</span>
-                    <br/>
-                    <small>Soup</small>
-                  </label>
-                  <label className="btn shadow-none active ">
-                    <input type="checkbox" checked autoComplete="off"/>
-                    <span>🍝</span>
-                    <br/>
-                    <small>Pasta</small>
-                  </label>
-                </SearchCategory>
+                <FoodCategorySelector type="radio"/>
               </div>
 
               <div className="d-flex flex-nowrap justify-content-center" data-toggle="collapse"
@@ -207,12 +158,6 @@ const SearchModalDialog = styled.div`
   .modal-content {
     border: 0;
   }
-`;
-
-const SearchCategory = styled.div`
-  overflow-x: auto;
-  overflow-y: hidden;
-  overflow-scrolling: touch;
 `;
 
 const SearchResult = styled.div`

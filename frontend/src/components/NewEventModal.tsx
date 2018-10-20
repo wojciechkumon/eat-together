@@ -1,4 +1,5 @@
 import * as React from 'react';
+import FoodCategorySelector from "./FoodCategorySelector";
 
 class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
 
@@ -68,58 +69,7 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
                     </div>
                   </div>
                   <label htmlFor="event-category">Categories</label>
-                  <div id="event-category"
-                       className="categories-slider d-flex btn-group btn-group-toggle"
-                       data-toggle="buttons">
-                    <label className="btn shadow-none active ">
-                      <input type="checkbox" autoComplete="off"/>
-                      <span>🥟</span>
-                      <br/>
-                      <small>Dumplings</small>
-                    </label>
-                    <label className="btn shadow-none active">
-                      <input type="checkbox" autoComplete="off"/>
-                      <span>🍰</span>
-                      <br/>
-                      <small>Cake</small>
-                    </label>
-                    <label className="btn shadow-none ">
-                      <input type="checkbox" autoComplete="off"/>
-                      <span>🥩</span>
-                      <br/>
-                      <small>Steak</small>
-                    </label>
-                    <label className="btn shadow-none active ">
-                      <input type="checkbox" autoComplete="off"/>
-                      <span>🍔</span>
-                      <br/>
-                      <small>Burgers</small>
-                    </label>
-                    <label className="btn shadow-none active ">
-                      <input type="checkbox" autoComplete="off"/>
-                      <span>🥢</span>
-                      <br/>
-                      <small>Asian</small>
-                    </label>
-                    <label className="btn shadow-none active ">
-                      <input type="checkbox" autoComplete="off"/>
-                      <span>🥗</span>
-                      <br/>
-                      <small>Vege</small>
-                    </label>
-                    <label className="btn shadow-none active ">
-                      <input type="checkbox" autoComplete="off"/>
-                      <span>🥣</span>
-                      <br/>
-                      <small>Soup</small>
-                    </label>
-                    <label className="btn shadow-none active ">
-                      <input type="checkbox" autoComplete="off"/>
-                      <span>🍝</span>
-                      <br/>
-                      <small>Pasta</small>
-                    </label>
-                  </div>
+                  <FoodCategorySelector type="checkbox"/>
                 </form>
               </div>
               <div className="modal-footer d-flex justify-content-between">
