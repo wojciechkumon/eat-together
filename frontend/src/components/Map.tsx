@@ -11,10 +11,9 @@ class Map extends React.PureComponent<{}, MapState> {
   render() {
     const position = [51.505, -0.09];
     return (
-      <LeafletMap center={position} zoom={13} style={{height: '100vw', zIndex: 10}}>
+      <LeafletMap center={position} zoom={13} className="h-100 flex-grow-1" style={{zIndex: 10}}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         />
         <Marker position={position}>
           <Popup>A pretty CSS3 popup.<br/>Easily customizable.</Popup>
