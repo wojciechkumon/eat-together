@@ -28,7 +28,7 @@ export interface Event {
   estimatedPrice: number;
   currency: string;
   maxParticipants: number;
-  cuisines: string[];
+  cuisines: Cuisine[];
   dateTime: string;
   address: {
     streetWithNumber: string;
@@ -53,6 +53,11 @@ export interface FullMeal {
   name: string;
   ingredients: string;
   intolerances: Intolerance[];
+}
+
+interface Cuisine {
+  id: number;
+  cuisineType: string;
 }
 
 interface Intolerance {

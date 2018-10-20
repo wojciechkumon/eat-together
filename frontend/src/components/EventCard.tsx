@@ -23,7 +23,7 @@ class EventCard extends React.PureComponent<EventCardProps> {
           <span>{myEvent.event.name}</span>
           <span>
           {myEvent.event.cuisines.map(couisine =>
-            foodCategories.filter(x => x.foodName === couisine).map(foodCategory =>
+            foodCategories.filter(x => x.foodName === couisine.cuisineType).map(foodCategory =>
               foodCategory.foodIcon
             )
           )}
@@ -36,11 +36,11 @@ class EventCard extends React.PureComponent<EventCardProps> {
         </div>
         <div className="card-body p-2">
           <h5 className="card-title d-flex justify-content-between">
-            {myEvent.organizer.firstName}<span>{this.hostRatingRender(myEvent.organizer.rating).map(X => <X/>)}</span>
+            {myEvent.organizer.firstName}<span>{this.hostRatingRender(myEvent.organizer.rating).map((X, i) => <X key={i}/>)}</span>
           </h5>
           <p className="card-text">{myEvent.event.description}</p>
           <div className="d-flex justify-content-around">
-            {buttons.map(MyButton => <MyButton/>)}
+            {buttons.map((MyButton, i) => <MyButton key={i}/>)}
           </div>
         </div>
       </div>

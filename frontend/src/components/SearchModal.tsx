@@ -28,11 +28,10 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
   };
 
   filterEvents = (): MyEvent[] => {
-    const {allEvents} = this.props;
+    const allEvents: MyEvent[] = this.props.allEvents;
     const {selectedCuisine, price} = this.state;
     let filteredEvents = !selectedCuisine ? allEvents
-      : allEvents.filter(myEvent => myEvent.event.cuisines.includes(selectedCuisine.toUpperCase()));
-
+      : allEvents.filter(myEvent => myEvent.event.cuisines.map(x => x.cuisineType).includes(selectedCuisine.toUpperCase()));
     return filteredEvents.filter(myEvent => myEvent.event.estimatedPrice <= price);
   };
 
@@ -111,7 +110,7 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
 
               <SearchResult>
                 {filteredEvents.map(myEvent =>
-                  <EventCard myEvent={myEvent} buttons={[
+                  <EventCard key={myEvent.event.id} myEvent={myEvent} buttons={[
                     () => <a className="btn btn-sm btn-outline-dark" onClick={() => {
                       setMap([myEvent.event.latitude, myEvent.event.longitude], 13);
                       (window as any).$('#search-modal').modal('hide');
