@@ -48,18 +48,18 @@ class LoginPage extends React.PureComponent<RouteComponentProps<{}>, LoginPageSt
                 <input value={email} onChange={e => this.setState({email: e.target.value})}
                        disabled={loggingIn}
                        type="email" className="form-control" id="login-email"
-                       aria-describedby="emailHelp"
+                       aria-describedby="emailHelp" style={error ? {borderColor: 'red', borderWidth: '1px'} : undefined}
                        placeholder="Email" autoComplete="username"/>
               </div>
               <div className="form-group">
                 <input value={password} onChange={e => this.setState({password: e.target.value})}
                        disabled={loggingIn}
                        type="password" className="form-control" id="exampleInputPassword1"
-                       placeholder="Password"
+                       placeholder="Password" style={error ? {borderColor: 'red', borderWidth: '1px'} : undefined}
                        autoComplete="current-password"/>
               </div>
-              {error && 'ERROR!!!'}
-              <button type="submit" className="btn btn-secondary" disabled={loggingIn}>Eat & Cook!</button>
+              <button type="submit" className="btn btn-secondary" disabled={loggingIn}>Eat & Cook!
+              </button>
             </form>
           </div>
         </div>
