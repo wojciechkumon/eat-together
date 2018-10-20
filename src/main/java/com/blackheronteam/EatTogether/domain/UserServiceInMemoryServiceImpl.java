@@ -13,12 +13,10 @@ import java.util.List;
 @Log4j2
 public class UserServiceInMemoryServiceImpl implements UserService {
     private static final List<User> users = Arrays.asList(
-            new User("gab", "asdf", "Gaba", "B."),
-            new User("mic", "asdf1", "Michal", "B."),
-            new User("prz", "asdf2", "Przemek", "F."),
-            new User("woj", "asdf3", "WOjtek", "K.")
-
-
+            new User("gab@gmail.com", "asdf", "Gaba", "B."),
+            new User("mic@gmail.com", "asdf1", "Michal", "B."),
+            new User("prz@gmail.com", "asdf2", "Przemek", "F."),
+            new User("woj@gmail.com", "asdf3", "WOjtek", "K.")
     );
 
 
