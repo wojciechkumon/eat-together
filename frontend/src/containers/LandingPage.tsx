@@ -1,14 +1,21 @@
 import * as React from 'react';
+import {RouteComponentProps, withRouter} from 'react-router';
 import styled from 'styled-components';
 import AboutModal from '../components/AboutModal';
 import Map from '../components/Map';
 import MyEventsModal from '../components/MyEventsModal';
 import NewEventModal from '../components/NewEventModal';
 import SearchModal from '../components/SearchModal';
+import {appConfig} from '../config/appConfig';
 
-class LandingPage extends React.PureComponent<{}, LandingPageState> {
+class LandingPage extends React.PureComponent<RouteComponentProps<{}>, LandingPageState> {
   state = {
     menuOpen: false
+  };
+
+  logout = () => {
+    window.localStorage.removeItem(appConfig.localStorage.tokenWrapperKey);
+    this.props.history.push(appConfig.routes.login);
   };
 
   render() {
@@ -47,7 +54,7 @@ class LandingPage extends React.PureComponent<{}, LandingPageState> {
               </a>
               <div className="dropdown-divider"/>
               <a className="dropdown-item" data-toggle="modal" data-target="#settings-modal"
-                 href="#">
+                 href="#" onClick={this.logout}>
                 <i className="fa fa-sign-out-alt"/>
                 Log out
               </a>
@@ -86,4 +93,4 @@ interface LandingPageState {
   menuOpen: boolean;
 }
 
-export default LandingPage;
+export default withRouter(LandingPage);

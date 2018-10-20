@@ -1,8 +1,10 @@
 package com.blackheronteam.EatTogether.controller;
 
-import com.blackheronteam.EatTogether.domain.Currency;
+import com.blackheronteam.EatTogether.domain.Address;
 import com.blackheronteam.EatTogether.domain.Event;
-import lombok.extern.log4j.Log4j2;
+import com.blackheronteam.EatTogether.dto.EventDto;
+import com.blackheronteam.EatTogether.repository.EventRepository;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
 
 @RestController
 @RequestMapping("/events")
 @Log4j2
+@RequiredArgsConstructor
 public class EventController {
+    private final EventRepository eventRepository;
 
     @PostMapping("/add-test")
     public ResponseEntity<?> addEvent(@RequestParam("eventName") String name) {
@@ -24,20 +30,28 @@ public class EventController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<?> addEvent(@RequestParam("eventName") String eventName,
-                                      @RequestParam("description") String description,
-                                      @RequestParam("price") BigDecimal price,
-                                      @RequestParam("currency") String currency,
-                                      @RequestParam("numberOfParticipants") Long numberOfParticipants
-                                      ) {
+    @PostMapping("/")
+    public void addEvent(EventDto eventDto) {
         Event event = new Event();
-        event.setName(eventName);
-        event.setDescription(description);
-        event.setEstimatedPrice(price);
-        event.setCurrency(new Currency(currency));
-        event.setNumberOfParticipants(numberOfParticipants);
+        event.setName(eventDto.getName());
+        event.setDescription(eventDto.getDescription());
+        event.setEstimatedPrice(eventDto.getEstimatedPrice());
+        event.setCurrency(eventDto.getCurrency());
+        event.setMaxParticipants(eventDto.getMaxParticipants());
+        event.setAddress(Address.builder()
+                .country(eventDto.getCountry())
+                .city(eventDto.getCity())
+                .zip(eventDto.getZip())
+                .streetWithNumber(eventDto.getStreetWithNumber())
+                .phoneNumber(eventDto.getPhoneNumber())
+                .build()
+        );
+        event.setCuisine(eventDto.getCuisine());
 
-        return new ResponseEntity<>(event, HttpStatus.OK);
+//        event.setLatitude();
+//        event.setLongitude();
+        // TODO long + lat
+        eventRepository.save(event);
+        log.info("Event: " + event.toString() + " created");
     }
 }

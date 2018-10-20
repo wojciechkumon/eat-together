@@ -1,10 +1,14 @@
 package com.blackheronteam.EatTogether.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 import lombok.Setter;
 import lombok.ToString;
-
-import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 @ToString
@@ -14,15 +18,19 @@ public class Event {
     @Id
     @GeneratedValue
     Long id;
-    Long organizerId;
-    Long numberOfParticipants;
-    BigDecimal estimatedPrice;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="Currency" , referencedColumnName="id",nullable=false)
-    Currency currency;
-    String cousineType;
+    String name;
     String description;
+    Long estimatedPrice;
+    String currency;
+
+    Long organizerId;
+    Long maxParticipants;
+
+    @Enumerated(EnumType.STRING)
+    Cuisine cuisine;
+
+    @OneToOne
+    Address address;
     Double latitude;
     Double longitude;
-    String name;
 }

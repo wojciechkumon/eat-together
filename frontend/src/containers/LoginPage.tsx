@@ -26,7 +26,14 @@ class LoginPage extends React.PureComponent<RouteComponentProps<{}>, LoginPageSt
       }
     }))
       .then(checkStatus)
-      .then(() => this.props.history.push(appConfig.routes.landingPage))
+      .then(response => response.json())
+      .then(json => {
+        window.localStorage.setItem(appConfig.localStorage.tokenWrapperKey, JSON.stringify({
+          token: json.access_token,
+          email
+        }));
+        this.props.history.push(appConfig.routes.landingPage)
+      })
       .catch(() => this.setState({error: true, loggingIn: false}))
   };
 
@@ -49,6 +56,7 @@ class LoginPage extends React.PureComponent<RouteComponentProps<{}>, LoginPageSt
                        disabled={loggingIn}
                        type="email" className="form-control" id="login-email"
                        aria-describedby="emailHelp"
+                       style={error ? {borderColor: 'red', borderWidth: '1px'} : undefined}
                        placeholder="Email" autoComplete="username"/>
               </div>
               <div className="form-group">
@@ -56,10 +64,11 @@ class LoginPage extends React.PureComponent<RouteComponentProps<{}>, LoginPageSt
                        disabled={loggingIn}
                        type="password" className="form-control" id="exampleInputPassword1"
                        placeholder="Password"
+                       style={error ? {borderColor: 'red', borderWidth: '1px'} : undefined}
                        autoComplete="current-password"/>
               </div>
-              {error && 'ERROR!!!'}
-              <button type="submit" className="btn btn-secondary" disabled={loggingIn}>Eat & Cook!</button>
+              <button type="submit" className="btn btn-secondary" disabled={loggingIn}>Eat & Cook!
+              </button>
             </form>
           </div>
         </div>
