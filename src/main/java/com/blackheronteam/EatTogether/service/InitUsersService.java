@@ -1,7 +1,9 @@
 package com.blackheronteam.EatTogether.service;
 
 import com.blackheronteam.EatTogether.domain.*;
+import com.blackheronteam.EatTogether.repository.EventRepository;
 import com.blackheronteam.EatTogether.service.datagenerators.AddressDataGenerator;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,43 +14,33 @@ import java.util.Arrays;
 import java.util.Collections;
 
 @Service
+@RequiredArgsConstructor
 public class InitUsersService {
 
-    @Autowired
-    BCryptPasswordEncoder encoder;
-    boolean delete = true;
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private EventAddressService eventAddressService;
-
-    @Autowired
-    private AddressDataGenerator addressDataGenerator;
-
-
-    public InitUsersService() {
-    }
+    private final BCryptPasswordEncoder encoder;
+    private final UserService userService;
+    private final EventAddressService eventAddressService;
+    private final AddressDataGenerator addressDataGenerator;
+    private final EventRepository eventRepository;
 
     @PostConstruct
     public void init() {
+        cleanup();
         initUsers();
+    }
 
-//        addressDataGenerator.generate();
-
-
+    private void cleanup() {
+        eventRepository.deleteAll();
+        userService.dropUsers();
     }
 
     private void initUsers() {
-        if (delete) {
-            userService.dropUsers();
-        }
-
         userService.saveUser(User.builder()
                 .firstName("Michal")
                 .lastName("B.")
                 .username("mic@gmail.com")
                 .password(encoder.encode("asdf1"))
+                .rating(4)
                 .address(Address.builder()
                         .city("Warszawa")
                         .phoneNumber("")
@@ -60,6 +52,7 @@ public class InitUsersService {
                 .lastName("F.")
                 .username("prz@gmail.com")
                 .password(encoder.encode("asdf2"))
+                .rating(5)
                 .address(Address.builder()
                         .city("Warszawa")
                         .phoneNumber("")
@@ -71,6 +64,7 @@ public class InitUsersService {
                 .lastName("B.")
                 .username("gab@gmail.com")
                 .password(encoder.encode("asdf"))
+                .rating(4)
                 .address(Address.builder()
                         .city("Warszawa")
                         .phoneNumber("")
@@ -82,6 +76,7 @@ public class InitUsersService {
                 .lastName("K.")
                 .username("woj@gmail.com")
                 .password(encoder.encode("asdf3"))
+                .rating(5)
                 .address(Address.builder()
                         .city("Warszawa")
                         .phoneNumber("")

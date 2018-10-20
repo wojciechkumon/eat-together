@@ -4,10 +4,8 @@ import com.blackheronteam.EatTogether.domain.User;
 import com.blackheronteam.EatTogether.repository.AddressRepository;
 import com.blackheronteam.EatTogether.repository.EventRepository;
 import com.blackheronteam.EatTogether.repository.UserRepository;
-import com.blackheronteam.EatTogether.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -45,7 +43,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user) {
-//        addressRepository.save(user.getAddress());
         userRepository.save(user);
     }
 
