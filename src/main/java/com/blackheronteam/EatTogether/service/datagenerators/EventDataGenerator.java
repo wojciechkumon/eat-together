@@ -1,7 +1,6 @@
 package com.blackheronteam.EatTogether.service.datagenerators;
 
 import com.blackheronteam.EatTogether.domain.*;
-import com.blackheronteam.EatTogether.repository.AddressRepository;
 import com.blackheronteam.EatTogether.service.EventAddressService;
 import com.blackheronteam.EatTogether.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +18,6 @@ public class EventDataGenerator implements Generator {
     EventAddressService eventAddressService;
 
     @Autowired
-    AddressRepository addressRepository;
-
-
-    @Autowired
     private UserService userService;
 
     @Override
@@ -34,7 +29,12 @@ public class EventDataGenerator implements Generator {
                 .cuisines(Arrays.asList(
                         Cuisine.builder().cuisineType(CuisineType.VEGE).build(),
                         Cuisine.builder().cuisineType(CuisineType.BURGERS).build()))
-                .address(addressRepository.findAll().iterator().next())
+                .address(Address.builder()
+                        .city("Warszawa")
+                        .phoneNumber("")
+                        .streetWithNumber("aleja Niepodleglosci 213")
+                        .country("Polska")
+                        .zip("02-086").build())
                 .currency("USD")
                 .dateTime(LocalDateTime.of(2018, 10, 31, 18, 00))
                 .estimatedPrice(20L)
