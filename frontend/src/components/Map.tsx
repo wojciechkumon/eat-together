@@ -4,15 +4,16 @@ import {Map as LeafletMap, Marker, Popup, TileLayer} from 'react-leaflet';
 class Map extends React.PureComponent<MapProps> {
 
   render() {
-    const {position, zoom} = this.props;
+    const {position, zoom, markers} = this.props;
     return (
       <LeafletMap center={position} zoom={zoom} className="h-100 flex-grow-1" style={{zIndex: 10}}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={position}>
-          <Popup>A pretty CSS3 popup.<br/>Easily customizable.</Popup>
-        </Marker>
+        {markers.map(marker =>
+          <Marker key={marker.position} position={position}>
+            <Popup>{marker.text}</Popup>
+          </Marker>)}
       </LeafletMap>
     )
   }
@@ -21,6 +22,12 @@ class Map extends React.PureComponent<MapProps> {
 interface MapProps {
   position: number[];
   zoom: number;
+  markers: MarkerData[];
+}
+
+export interface MarkerData {
+  position: number[];
+  text: string;
 }
 
 export default Map;

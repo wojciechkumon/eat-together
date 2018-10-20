@@ -2,7 +2,8 @@ import * as React from 'react';
 import {RouteComponentProps, withRouter} from 'react-router';
 import styled from 'styled-components';
 import AboutModal from '../components/AboutModal';
-import Map from '../components/Map';
+import {MyEvent} from '../components/Event';
+import Map, {MarkerData} from '../components/Map';
 import MyEventsModal from '../components/MyEventsModal';
 import NewEventModal from '../components/NewEventModal';
 import SearchModal from '../components/SearchModal';
@@ -38,7 +39,12 @@ class LandingPage extends React.PureComponent<RouteComponentProps<{}>, LandingPa
 
   render() {
     const {position, zoom} = this.state;
+    const allEvents: MyEvent[] = this.state.allEvents;
     const setMap = (position: number[], zoom: number) => this.setState({zoom, position});
+    const markers: MarkerData[] = allEvents.map(myEvent => ({
+      position: [myEvent.event.latitude, myEvent.event.longitude],
+      text: myEvent.event.name
+    }));
     return (
       <>
         <div className="d-flex flex-column h-100">
@@ -85,7 +91,7 @@ class LandingPage extends React.PureComponent<RouteComponentProps<{}>, LandingPa
             </a>
           </nav>
           <div className="d-flex flex-column flex-grow-1">
-            <Map position={position} zoom={zoom}/>
+            <Map position={position} zoom={zoom} markers={markers}/>
           </div>
         </div>
         <SearchModal setMap={setMap}/>
@@ -113,7 +119,7 @@ interface LandingPageState {
   menuOpen: boolean;
   position: number[];
   zoom: number;
-  allEvents: any;
+  allEvents: MyEvent[];
 }
 
 export default withRouter(LandingPage);
