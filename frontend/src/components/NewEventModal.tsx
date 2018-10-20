@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-class NewEventModal extends React.PureComponent {
+class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
 
   render() {
     return (
@@ -30,11 +30,11 @@ class NewEventModal extends React.PureComponent {
                               placeholder="eg Sushi Kushi"/>
                   </div>
                   <div className="row">
-                    <div className="col form-group">
+                    <div className="col-12 col-md-6 form-group">
                       <label htmlFor="event-name">Price</label>
                       <div className="input-group">
-                        <input type="number" className="form-control" placeholder="0.00"
-                               aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+                        <input type="number" className="form-control" step={0.10}
+                               aria-label="money" aria-describedby="basic-addon2"/>
                         <select className="form-control p-0">
                           <option>USD</option>
                           <option>EUR</option>
@@ -42,29 +42,12 @@ class NewEventModal extends React.PureComponent {
                         </select>
                       </div>
                     </div>
-                    <div className="col form-group">
-                      <label htmlFor="event-name">How many people?</label>
+                    <div className="col-12 col-md-6 form-group">
+                      <label htmlFor="numberOfParticipants">How many people?</label>
                       <div className="btn-group btn-group-toggle d-flex justify-content-between"
                            data-toggle="buttons">
-                        <label className="btn btn-secondary p-2">
-                          <input type="radio" name="options" id="option1" autoComplete="off"
-                                 checked/>1
-                        </label>
-                        <label className="btn btn-secondary p-2">
-                          <input type="radio" name="options" id="option1" autoComplete="off"/>2
-                        </label>
-                        <label className="btn btn-secondary p-2">
-                          <input type="radio" name="options" id="option1" autoComplete="off"/>3
-                        </label>
-                        <label className="btn btn-secondary p-2">
-                          <input type="radio" name="options" id="option1" autoComplete="off"/>4
-                        </label>
-                        <label className="btn btn-secondary p-2">
-                          <input type="radio" name="options" id="option1" autoComplete="off"/>5
-                        </label>
-                        <label className="btn btn-secondary p-2">
-                          <input type="radio" name="options" id="option1" autoComplete="off"/>6
-                        </label>
+                        <input type="number" className="form-control" name="participants" min="1"
+                               max="100" step={1}/>
                       </div>
                     </div>
                   </div>
@@ -151,6 +134,14 @@ class NewEventModal extends React.PureComponent {
       </div>
     );
   }
+}
+
+interface NewEventModalState {
+  eventName: string;
+  description: string;
+  estimatedPrice: number;
+  currency: string;
+  maxParticipants: number;
 }
 
 export default NewEventModal;

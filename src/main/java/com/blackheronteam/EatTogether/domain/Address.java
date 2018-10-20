@@ -1,22 +1,21 @@
 package com.blackheronteam.EatTogether.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+
+import lombok.Builder;
 
 @Entity
+@Builder
 public class Address {
 
     @Id
     @GeneratedValue
     Long id;
-    String street;
-    String houseNumber;
+    String streetWithNumber;
     String city;
-    String zip;
     String phoneNumber;
+    String zip;
     String country;
 }
