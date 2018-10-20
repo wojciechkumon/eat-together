@@ -1,5 +1,6 @@
-package com.blackheronteam.EatTogether.domain;
+package com.blackheronteam.EatTogether.service;
 
+import com.blackheronteam.EatTogether.domain.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 

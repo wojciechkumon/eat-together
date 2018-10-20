@@ -1,5 +1,7 @@
-package com.blackheronteam.EatTogether.domain;
+package com.blackheronteam.EatTogether.service;
 
+import com.blackheronteam.EatTogether.domain.User;
+import com.blackheronteam.EatTogether.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

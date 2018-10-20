@@ -1,6 +1,6 @@
 package com.blackheronteam.EatTogether.controller;
 
-import com.blackheronteam.EatTogether.domain.UserService;
+import com.blackheronteam.EatTogether.service.UserService;
 import com.blackheronteam.EatTogether.service.AddressLookupService;
 import com.mapbox.api.geocoding.v5.models.GeocodingResponse;
 import lombok.extern.log4j.Log4j2;

@@ -2,7 +2,6 @@ package com.blackheronteam.EatTogether.service;
 
 import com.blackheronteam.EatTogether.domain.Address;
 import com.blackheronteam.EatTogether.domain.User;
-import com.blackheronteam.EatTogether.domain.UserService;
 import com.blackheronteam.EatTogether.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

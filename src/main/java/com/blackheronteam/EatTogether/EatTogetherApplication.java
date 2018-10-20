@@ -1,8 +1,7 @@
 package com.blackheronteam.EatTogether;
 
-import com.blackheronteam.EatTogether.domain.UserService;
-import com.blackheronteam.EatTogether.domain.UserServiceImpl;
-import com.blackheronteam.EatTogether.domain.UserServiceInMemoryServiceImpl;
+import com.blackheronteam.EatTogether.service.UserService;
+import com.blackheronteam.EatTogether.service.UserServiceImpl;
 import com.blackheronteam.EatTogether.service.AddressLookupService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

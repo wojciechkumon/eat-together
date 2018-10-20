@@ -1,7 +1,6 @@
 package com.blackheronteam.EatTogether.controller;
 
-import com.blackheronteam.EatTogether.domain.UserService;
-import com.blackheronteam.EatTogether.repository.UserRepository;
+import com.blackheronteam.EatTogether.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
