@@ -63,8 +63,6 @@ public class EventAddressService {
                 .phoneNumber(eventDto.getPhoneNumber())
                 .build();
 
-//        Meal meal = Meal.builder().mealName()
-        addressRepository.save(address);
         Event event = Event.builder().build();
         event.setName(eventDto.getName());
         event.setDescription(eventDto.getDescription());
