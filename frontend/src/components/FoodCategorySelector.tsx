@@ -9,13 +9,13 @@ class FoodCategorySelector extends React.PureComponent<FoodCategorySelectorProps
     const {type, selected, toggle} = this.props;
 
     return (
-      <CategorySlider className="categories-slider d-flex btn-group btn-group-toggle"
+      <CategorySlider className={`categories-slider d-flex btn-group btn-group-toggle`}
                       data-toggle="buttons">
         {foodCategories.map(foodCategory =>
           <FoodCategoryItem key={foodCategory.foodName}
                             foodIcon={foodCategory.foodIcon}
                             foodName={foodCategory.foodName}
-                            selected={selected.includes(foodCategory.foodName)}
+                            selected={selected.includes(foodCategory.foodName.toUpperCase())}
                             toggle={toggle}
                             type={type}/>)}
       </CategorySlider>
