@@ -20,4 +20,4 @@ Our solution will fill the gap in the sharing economy world. It will solve many 
 Technologies:
 - React HTML5 CSS3
 - Spring, Java/Kotlin, Hibernate
-- MariaDB
+- MariaDB, Docker
