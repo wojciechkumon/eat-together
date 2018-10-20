@@ -4,6 +4,7 @@ import {checkStatus, withToken} from '../utils/api';
 import {copy} from '../utils/copy';
 import FoodCategorySelector from './FoodCategorySelector';
 import {Meal} from './MealInterface';
+import {intolerancesTypes} from "./intolerancesTypes";
 
 class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
   state = {
@@ -206,8 +207,12 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
                              placeholder='eg bread, chicken'/>
                     </div>
                     <div className="form-group">
-                      <label htmlFor="event-name">Intolerances</label>
-                      lacto etc
+                      {intolerancesTypes.map(intoleranceType =>
+                        <div className="custom-control custom-checkbox">
+                          <input type="checkbox" className="custom-control-input" id={intoleranceType.name}/>
+                          <label className="custom-control-label" htmlFor={intoleranceType.name}>{intoleranceType.text}</label>
+                        </div>
+                      )}
                     </div>
                   </div>
                 }
