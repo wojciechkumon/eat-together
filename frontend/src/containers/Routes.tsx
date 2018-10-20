@@ -13,6 +13,7 @@ class Routes extends React.Component {
   render() {
     return (
       <Switch>
+        <Route exact path={appConfig.routes.landingPage} component={LandingPageWrapped}/>
         <Route path={appConfig.routes.login} component={LoginPageWrapped}/>
         <Route component={LayoutWrappedPages}/>
       </Switch>
@@ -28,6 +29,7 @@ export const LayoutWrappedPages = () => (
   </LayoutWrapper>
 );
 
+const LandingPageWrapped = scrollOnMount(LandingPage);
 const LoginPageWrapped = scrollOnMount(LoginPage);
 // const NotFoundWrapped = scrollOnMount(NotFound);
 
