@@ -11,6 +11,7 @@ public class AddressDataGenerator implements Generator {
     @Autowired
     AddressRepository addressRepository;
 
+
     @Override
     public void generate() {
 

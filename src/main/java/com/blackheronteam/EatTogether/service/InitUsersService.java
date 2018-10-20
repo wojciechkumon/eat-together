@@ -1,17 +1,15 @@
 package com.blackheronteam.EatTogether.service;
 
-import com.blackheronteam.EatTogether.domain.*;
+import com.blackheronteam.EatTogether.domain.Address;
+import com.blackheronteam.EatTogether.domain.User;
 import com.blackheronteam.EatTogether.repository.EventRepository;
 import com.blackheronteam.EatTogether.service.datagenerators.AddressDataGenerator;
+import com.blackheronteam.EatTogether.service.datagenerators.EventDataGenerator;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
@@ -23,10 +21,18 @@ public class InitUsersService {
     private final AddressDataGenerator addressDataGenerator;
     private final EventRepository eventRepository;
 
+    private final EventDataGenerator eventDataGenerator;
+
     @PostConstruct
     public void init() {
         cleanup();
+
+//        addressDataGenerator.generate();
+
         initUsers();
+        eventDataGenerator.generate();
+
+
     }
 
     private void cleanup() {
@@ -84,24 +90,24 @@ public class InitUsersService {
                         .zip("00-844").build())
                 .build());
 
-        eventAddressService.saveAndUpdateCoordinates(
-                Event.builder()
-                        .address(Address.builder()
-                                .city("Warszawa")
-                                .phoneNumber("")
-                                .streetWithNumber("Grzybowska 63")
-                                .zip("00-844").build())
-                        .cuisines(Arrays.asList(Cuisine.builder().cuisineType(CuisineType.CAKE).build()))
-                        .currency("USD")
-                        .dateTime(LocalDateTime.now())
-                        .description("obiadek u babci")
-                        .name("dinner")
-                        .estimatedPrice(100L)
-                        .meals(Collections.emptyList())
-                        .maxParticipants(6L)
-                        .build()
-
-        );
+//        eventAddressService.saveAndUpdateCoordinates(
+//                Event.builder()
+//                        .address(Address.builder()
+//                                .city("Warszawa")
+//                                .phoneNumber("")
+//                                .streetWithNumber("Grzybowska 63")
+//                                .zip("00-844").build())
+//                        .cuisines(Arrays.asList(Cuisine.builder().cuisineType(CuisineType.CAKE).build()))
+//                        .currency("USD")
+//                        .dateTime(LocalDateTime.now())
+//                        .description("obiadek u babci")
+//                        .name("dinner")
+//                        .estimatedPrice(100L)
+//                        .meals(Collections.emptyList())
+//                        .maxParticipants(6L)
+//                        .build()
+//
+//        );
     }
 
 }
