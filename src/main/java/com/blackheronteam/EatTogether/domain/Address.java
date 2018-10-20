@@ -24,4 +24,14 @@ public class Address {
     String phoneNumber;
     String zip;
     String country;
+
+
+    // eg plac Europejski 1 00-844 Warszawa
+    public String convertToQuery() {
+        return streetWithNumber + " " +
+                zip + " " +
+                city + " " +
+                country;
+    }
+
 }

@@ -5,7 +5,10 @@ import com.blackheronteam.EatTogether.domain.Cuisine;
 import com.blackheronteam.EatTogether.domain.Event;
 import com.blackheronteam.EatTogether.dto.EventDto;
 import com.blackheronteam.EatTogether.repository.EventRepository;
-
+import com.blackheronteam.EatTogether.service.EventAddressService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,9 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
-
 
 @RestController
 @RequestMapping("/events")
@@ -26,6 +26,9 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class EventController {
     private final EventRepository eventRepository;
+
+    @Autowired
+    private EventAddressService eventAddressService;
 
     @PostMapping("/add-test")
     public ResponseEntity<?> addEvent(@RequestParam("eventName") String name) {
@@ -56,7 +59,10 @@ public class EventController {
 //        event.setLatitude();
 //        event.setLongitude();
         // TODO long + lat
-        eventRepository.save(event);
+        Event saved = eventRepository.save(event);
+        eventAddressService.updateEventAddressCoordinates(saved);
+
+
         log.info("Event: " + event.toString() + " created");
     }
 }
