@@ -23,7 +23,7 @@ public class EventDataGenerator implements Generator {
     @Override
     public void generate() {
 //        UserDetails
-        List<User> userList = userService.findAllUsers().stream().filter(u -> u.getUsername().equals("woj@gmail.com")).collect(Collectors.toList());
+        List<User> userList = userService.findAllUsers().stream().filter(u -> !u.getUsername().equals("woj@gmail.com")).collect(Collectors.toList());
 
         Event event = Event.builder()
                 .cuisines(Arrays.asList(
@@ -72,8 +72,42 @@ public class EventDataGenerator implements Generator {
                 .build();
 
 
+        Event event_3 = Event.builder()
+                .cuisines(Arrays.asList(
+                        Cuisine.builder().cuisineType(CuisineType.VEGE).build(),
+                        Cuisine.builder().cuisineType(CuisineType.CAKE).build()))
+                .address(Address.builder()
+                        .city("Warszawa")
+                        .phoneNumber("")
+                        .country("Polska")
+                        .streetWithNumber("Chmielna 26")
+                        .zip("00-844").build())
+                .currency("EUR")
+                .dateTime(LocalDateTime.of(2018, 11, 02, 13, 00))
+                .estimatedPrice(15L)
+                .maxParticipants(3L)
+                .name("Healthy dessert")
+                .meals(Arrays.asList(
+                        Meal.builder()
+                                .name("VEGAN & GLUTEN-FREE CHOCOLATE CHIP COOKIES")
+                                .intolerances(Arrays.asList(
+                                        Intolerance.builder().intoleranceType(IntoleranceType.GLUTEN).build(),
+                                        Intolerance.builder().intoleranceType(IntoleranceType.NUTS).build()))
+                                .ingredients("gluten-free oat flour, " +
+                                        "coconut sugar, " +
+                                        "chia eggs, " +
+                                        "melted coconut oil, " +
+                                        "vanilla extract, " +
+                                        "salt, " +
+                                        "dark chocolate chips")
+                                .build()
+                ))
+                .description("cookies are lightly sweetened, with a crisp outside and soft, tender inside– just the way you like them")
+                .organizerId(userList.get(1).getId())
+                .build();
 
 
         eventAddressService.saveAndUpdateCoordinates(event);
+        eventAddressService.saveAndUpdateCoordinates(event_3);
     }
 }
