@@ -94,17 +94,17 @@ public class EventAddressService {
         return eventRepository.findByOrganizerId(user.getId());
     }
 
-    public List<MyEvent> getAll(Principal principal) {
+        public List<MyEvent> getAll(Principal principal) {
         List<MyEvent> events = new ArrayList<>();
         eventRepository.findAll().forEach(event -> {
             // lacto = lactofree
 
             Optional<User> organizer = userRepository.findById(event.getOrganizerId());
-            events.add(new MyEvent(
-                    organizer
-                            .orElseThrow(() ->
-                                    new IllegalArgumentException("User with id: " + event.getOrganizerId() + " not found")),
-                    event));
+            events.add(
+                    new MyEvent(organizer
+                            .orElseThrow(() -> new IllegalArgumentException("User with id: " + event.getOrganizerId() + " not found")),
+                            event)
+            );
 
         });
 
