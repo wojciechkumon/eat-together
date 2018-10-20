@@ -10,7 +10,6 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
   constructor(props: SearchModalProps) {
     super(props);
     this.state = {
-      filteredEvents: props.allEvents,
       selectedCuisine: undefined,
       price: 25,
       distance: 10,
@@ -28,8 +27,19 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
     }
   };
 
+  filterEvents = (): MyEvent[] => {
+    const {allEvents} = this.props;
+    const {selectedCuisine, price} = this.state;
+    let filteredEvents = !selectedCuisine ? allEvents
+      : allEvents.filter(myEvent => myEvent.event.cuisines.includes(selectedCuisine));
+
+    return filteredEvents.filter(myEvent => myEvent.event.estimatedPrice <= price);
+  };
+
   render() {
     const {selectedCuisine, price, distance, days} = this.state;
+    // const filteredEvents = filterEvents();
+
     // const {setMap} = this.props;
     return (
       <SearchModalDialog id="search-modal" className="modal fade" tabIndex={-1} role="dialog">
@@ -88,7 +98,7 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
                 </label>
                 <FoodCategorySelector type="radio"
                                       selected={selectedCuisine ? [selectedCuisine] : []}
-                                      toggle={this.toggleRadio}/>/>
+                                      toggle={this.toggleRadio}/>
               </div>
 
               <div className="d-flex flex-nowrap justify-content-center" data-toggle="collapse"
@@ -215,7 +225,6 @@ interface SearchModalProps {
 
 interface SearchModalState {
   selectedCuisine?: string;
-  filteredEvents: MyEvent[];
   price: number;
   distance: number;
   days: number;
