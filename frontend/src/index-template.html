@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>Eat Together</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#e4e4e4">
   <link rel="icon" href="<%= htmlWebpackPlugin.options.contextPath %>/favicon.ico">
   <link rel="preload" href="<%= htmlWebpackPlugin.files.css[0] %>" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -13,10 +12,15 @@
   <link rel="preload" as="script" href='<%= htmlWebpackPlugin.files.js[0] %>'>
   <link rel="preload" as="script" href='<%= htmlWebpackPlugin.files.js[1] %>'>
   <link rel="manifest" href="<%= webpackConfig.output.publicPath %><%= webpack.assets.map(asset => asset.name).filter(assetName => assetName.startsWith('manifest.'))[0] %>">
-
+  <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.css"
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/custom-themes.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+        integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
   <noscript>
     <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
   </noscript>
   <script>
     /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
@@ -26,121 +30,14 @@
   </script>
 
   <style>
-
-    * {
-      margin: 0;
-      padding: 0;
-      border: 0;
-      font-family: Roboto, sans-serif;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-size: 12px;
-    }
-
-    .spinner-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    body, html {
       height: 100%;
-    }
-
-    .spinner {
-      position: relative;
-      width: 3rem;
-      height: 3rem;
-    }
-
-    .spinner.spinner--xs {
-      width: 1rem;
-      height: 1rem;
-    }
-
-    .spinner.spinner--lg {
-      width: 5rem;
-      height: 5rem;
-    }
-
-    .spinner:before {
-      content: '';
-      display: block;
-      padding-top: 100%;
-    }
-
-    .circular {
-      animation: rotate 2s linear infinite;
-      height: 100%;
-      transform-origin: center center;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      margin: auto;
-    }
-
-    .path {
-      stroke-dasharray: 1, 200;
-      stroke-dashoffset: 0;
-      animation: dash 1.5s ease-in-out infinite;
-      stroke-linecap: round;
-    }
-
-    @keyframes rotate {
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes dash {
-      0% {
-        stroke-dasharray: 1, 200;
-        stroke-dashoffset: 0;
-      }
-      50% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -35px;
-      }
-      100% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -124px;
-      }
-    }
-
-    .spinner-text {
-      font-size: 1.25rem;
-      padding-left: 1rem;
-      color: #555;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .spinner-text.spinner--xs {
-      font-size: 1rem;
-    }
-
-    .spinner-text.spinner--nocolor {
-      color: inherit;
+      background-color: #3B653D;
     }
   </style>
 </head>
-<body style="margin: 0;background-color: #e4e4e4; height: 100vh;">
-<div id="root" style="height: 100%">
-  <div class="spinner-wrapper" role="progressbar">
-    <div class="spinner spinner--lg">
-      <svg class="circular" viewBox="25 25 50 50">
-        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke="#007BFF"
-                stroke-miterlimit="10"></circle>
-      </svg>
-    </div>
-    <div class="spinner-text">
-      <span>Processing...</span>
-    </div>
-  </div>
+<body>
+<div id="root">
 </div>
 
 <script>
