@@ -1,13 +1,35 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import {MyEvent} from './Event';
-import FoodCategorySelector from "./FoodCategorySelector";
+import FoodCategorySelector from './FoodCategorySelector';
 
 // import EventCard from "./EventCard";
 
 class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState> {
 
+  constructor(props: SearchModalProps) {
+    super(props);
+    this.state = {
+      filteredEvents: props.allEvents,
+      selectedCuisine: undefined,
+      price: 25,
+      distance: 10,
+      days: 15
+    }
+  }
+
+  toggleRadio = (foodName: string) => {
+    const upFoodName = foodName.toUpperCase();
+    const selectedCuisine = this.state.selectedCuisine;
+    if (selectedCuisine === upFoodName) {
+      this.setState({selectedCuisine: undefined})
+    } else {
+      this.setState({selectedCuisine: upFoodName})
+    }
+  };
+
   render() {
+    const {selectedCuisine, price, distance, days} = this.state;
     // const {setMap} = this.props;
     return (
       <SearchModalDialog id="search-modal" className="modal fade" tabIndex={-1} role="dialog">
@@ -27,7 +49,10 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
                             <i className="fa fa-coins fa-2x"/><br/>
                             <small>Cheap</small>
                         </span>
-                  <input type="range" className="custom-range" min="1" max="50" step="1" id="customRange1"/>
+                  <input value={price}
+                         onChange={e => this.setState({price: parseInt(e.target.value)})}
+                         type="range" className="custom-range" min={1} max={50} step={1}
+                         id="customRange1"/>
                   <span className="justify-content-center">
                             <i className="fa fa-money-bill fa-2x"/><br/>
                             <small>Pricey</small>
@@ -38,7 +63,10 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
                             <i className="fa fa-walking fa-2x"/><br/>
                             <small>Near</small>
                         </span>
-                  <input type="range" className="custom-range" min="1" max="50" step="1" id="customRange2"/>
+                  <input value={distance}
+                         onChange={e => this.setState({distance: parseInt(e.target.value)})}
+                         type="range" className="custom-range" min={1} max={50} step={1}
+                         id="customRange2"/>
                   <span className="justify-content-center">
                             <i className="fa fa-plane fa-2x"/><br/>
                             <small>Far</small>
@@ -49,13 +77,18 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
                             <i className="fa fa-calendar-minus fa-2x"/><br/>
                             <small>Soon</small>
                         </span>
-                  <input type="range" className="custom-range" min="1" max="30" step="1" id="customRange3"/>
+                  <input value={days}
+                         onChange={e => this.setState({days: parseInt(e.target.value)})}
+                         type="range" className="custom-range" min={1} max={30} step={1}
+                         id="customRange3"/>
                   <span className="justify-content-center">
                             <i className="fa fa-calendar-plus fa-2x"/><br/>
                             <small>Distant</small>
                         </span>
                 </label>
-                <FoodCategorySelector type="radio" selected={[/* TODO */]} toggle={() => console.log('x')}/>
+                <FoodCategorySelector type="radio"
+                                      selected={selectedCuisine ? [selectedCuisine] : []}
+                                      toggle={this.toggleRadio}/>/>
               </div>
 
               <div className="d-flex flex-nowrap justify-content-center" data-toggle="collapse"
@@ -181,7 +214,11 @@ interface SearchModalProps {
 }
 
 interface SearchModalState {
-  menuOpen: boolean;
+  selectedCuisine?: string;
+  filteredEvents: MyEvent[];
+  price: number;
+  distance: number;
+  days: number;
 }
 
 export default SearchModal;
