@@ -1,4 +1,6 @@
 import * as React from 'react';
+import {appConfig} from '../config/appConfig';
+import {checkStatus, withToken} from '../utils/api';
 import FoodCategorySelector from './FoodCategorySelector';
 
 class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
@@ -19,8 +21,31 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
 
   submit = e => {
     e.preventDefault();
-    const {name, description, estimatedPrice, currency, maxParticipants, dateTime, streetWithNumber, city, zip, cuisines} = this.state;
+    const {name, description, estimatedPrice, currency, maxParticipants, dateTime, streetWithNumber, city, zip, cuisines, phoneNumber, country} = this.state;
     console.log(name, description, estimatedPrice, currency, maxParticipants, dateTime, streetWithNumber, city, zip, cuisines);
+
+    fetch(new Request(withToken(appConfig.api.events), {
+      method: 'POST',
+      body: JSON.stringify({
+        name,
+        description,
+        estimatedPrice: Math.round(estimatedPrice * 100),
+        currency,
+        maxParticipants,
+        cuisines,
+        dateTime,
+        streetWithNumber,
+        city,
+        phoneNumber,
+        zip,
+        country
+      })
+    }))
+      .then(checkStatus)
+      .then(response => {
+        console.log('success', response);
+      })
+      .catch(() => console.log('error'));
   };
 
   toggleCheckbox = (foodName: string) => {
@@ -33,8 +58,7 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
   };
 
   render() {
-    // TODO phoneNumber country
-    const {name, description, estimatedPrice, currency, maxParticipants, dateTime, streetWithNumber, city, zip, cuisines} = this.state;
+    const {name, description, estimatedPrice, currency, maxParticipants, dateTime, phoneNumber, streetWithNumber, country, city, zip, cuisines} = this.state;
 
     return (
       <div id="new-event-modal" className="modal fade" tabIndex={-1} role="dialog">
@@ -100,8 +124,12 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
                       <label htmlFor="date-time-input">When?</label>
                       <input value={dateTime}
                              onChange={e => this.setState({dateTime: e.target.value})}
-                             id="date-time-input" className="form-control p-1" type="datetime-local"
+                             id="date-time-input" className="form-control p-1 mb-3" type="datetime-local"
                              name="date-time"/>
+                      <input value={phoneNumber}
+                             onChange={e => this.setState({phoneNumber: e.target.value})}
+                             className="form-control p-1" type="text"
+                             placeholder="Phone"/>
                     </div>
                     <div className="col form-group">
                       <label htmlFor="date-time-input">Where?</label>
@@ -112,11 +140,15 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
                       <div className="input-group">
                         <input value={zip}
                                onChange={e => this.setState({zip: e.target.value})}
-                               className="form-control p-1" type="number" placeholder="00-000"/>
+                               className="form-control p-1" type="text" placeholder="00-000"/>
                         <input value={city}
                                onChange={e => this.setState({city: e.target.value})}
                                className="form-control p-1" type="text" placeholder="City"/>
                       </div>
+                      <input value={country}
+                             onChange={e => this.setState({country: e.target.value})}
+                             className="form-control p-1" type="text"
+                             placeholder="Country"/>
                     </div>
                   </div>
                   <label htmlFor="event-category">Categories</label>

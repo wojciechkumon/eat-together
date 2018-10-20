@@ -1,3 +1,5 @@
+import {appConfig} from '../config/appConfig';
+
 export const checkStatus = response => {
   const hasError = response.status < 200 || response.status >= 300;
   if (hasError) {
@@ -6,4 +8,9 @@ export const checkStatus = response => {
     throw error;
   }
   return response;
+};
+
+export const withToken = url => {
+  const tokenWrapper = JSON.parse(window.localStorage.getItem(appConfig.localStorage.tokenWrapperKey)!!);
+  return `${url}?access_token=${tokenWrapper.token}`;
 };
