@@ -1,0 +1,22 @@
+{
+  "extends": ["tslint-react-recommended"],
+  "rules": {
+    "linebreak-style": [false],
+    "quotemark": [true, "single", "jsx-double"],
+    "no-non-null-assertion": [false],
+    "no-submodule-imports": [
+      true,
+      "bootstrap",
+      "@fortawesome/free-solid-svg-icons",
+      "history",
+      "intl",
+      "reactstrap",
+      "redux-devtools-extension",
+      "react-day-picker",
+      "react-redux"
+    ]
+  },
+  "linterOptions": {
+    "exclude": ["src/__tests__/**"]
+  }
+}

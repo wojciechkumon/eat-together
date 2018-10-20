@@ -1,0 +1,157 @@
+{
+  "name": "eat-together",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Eat Together",
+  "scripts": {
+    "start": "webpack-dev-server --progress --mode development --colors --config webpack.dev.js",
+    "start:dist": "yarn dist && yarn serve:dist",
+    "dist": "yarn nlv && yarn linter && yarn clean && webpack --mode production --colors --config webpack.prod.js",
+    "dist:context": "yarn dist --env.contextPath=/eatTogether",
+    "serve:dist": "node serve-dist.js",
+    "serve:dist:context": "yarn serve:dist /demo/tp",
+    "clean": "rimraf dist/*",
+    "analyze": "yarn clean && webpack --mode production --colors --config webpack.prod.js --env.analyze",
+    "nlv": "node-license-validator --production --allow-licenses CPL MPL BSD BSD-2-Clause BSD-3-Clause BSD-4-Clause MIT Apache Apache-2.0 \"Apache License\" ISC WTFPl CC-BY-4.0 CC-BY-3.0 \"Public domain\" MIT/X11 BSD-like --allow-packages trip-proposal-demo-app",
+    "linter": "tslint --project .",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "zip": "bestzip trip-proposal-demo-app.zip dist/*"
+  },
+  "engines": {
+    "node": ">=10.1.0",
+    "yarn": ">=1.5.1"
+  },
+  "devDependencies": {
+    "@babel/core": "7.0.0-beta.47",
+    "@babel/plugin-syntax-decorators": "7.0.0-beta.47",
+    "@babel/plugin-syntax-dynamic-import": "7.0.0-beta.47",
+    "@babel/plugin-syntax-jsx": "7.0.0-beta.47",
+    "@babel/plugin-syntax-typescript": "7.0.0-beta.47",
+    "@types/enzyme": "^3.1.13",
+    "@types/fetch-mock": "^6.0.3",
+    "@types/jest": "^23.3.1",
+    "@types/redux-mock-store": "^1.0.0",
+    "awesome-typescript-loader": "^5.2.0",
+    "bestzip": "^1.1.4",
+    "connect-history-api-fallback": "^1.5.0",
+    "css-loader": "^1.0.0",
+    "detect-port": "^1.2.3",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
+    "express": "^4.16.3",
+    "fetch-mock": "^6.5.2",
+    "file-loader": "^1.1.11",
+    "html-webpack-harddisk-plugin": "^0.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.4.2",
+    "jest-styled-components": "^5.0.1",
+    "mini-css-extract-plugin": "^0.4.1",
+    "mockdate": "^2.0.2",
+    "node-license-validator": "^1.3.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.0",
+    "progress-bar-webpack-plugin": "^1.9.1",
+    "react-dev-utils": "^5.0.1",
+    "react-test-renderer": "^16.4.2",
+    "redux-mock-store": "^1.5.3",
+    "rimraf": "^2.5.4",
+    "ts-jest": "22.4.6",
+    "tslint": "^5.11.0",
+    "tslint-eslint-rules": "^5.3.1",
+    "tslint-react": "^3.6.0",
+    "tslint-react-recommended": "^1.0.15",
+    "typescript": "^3.0.1",
+    "url-loader": "^1.0.1",
+    "webpack": "4.16.5",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5",
+    "webpack-pwa-manifest": "^3.6.3",
+    "workbox-webpack-plugin": "^3.4.1"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.2",
+    "@fortawesome/free-solid-svg-icons": "^5.2.0",
+    "@fortawesome/react-fontawesome": "^0.1.0",
+    "@types/classnames": "^2.2.6",
+    "@types/history": "^4.7.0",
+    "@types/lodash-es": "^4.17.1",
+    "@types/react": "16.4.7",
+    "@types/react-css-transition-replace": "^2.1.3",
+    "@types/react-intl": "^2.3.9",
+    "@types/react-redux": "^6.0.6",
+    "@types/react-responsive": "^3.0.1",
+    "@types/react-router-dom": "^4.3.0",
+    "@types/reactstrap": "^6.0.2",
+    "@types/redux-form": "^7.4.4",
+    "babel-loader": "^8.0.0-beta.4",
+    "babel-polyfill": "^6.20.0",
+    "bootstrap": "^4.1.3",
+    "classnames": "^2.2.6",
+    "history": "^4.7.2",
+    "intl": "^1.2.5",
+    "isomorphic-fetch": "^2.2.1",
+    "lodash-es": "^4.17.10",
+    "moment": "^2.22.2",
+    "react": "^16.4.2",
+    "react-css-transition-replace": "^3.0.3",
+    "react-day-picker": "^7.1.10",
+    "react-dom": "^16.4.2",
+    "react-hot-loader": "^4.3.4",
+    "react-intl": "^2.4.0",
+    "react-redux": "^5.0.1",
+    "react-responsive": "^5.0.0",
+    "react-router-dom": "^4.3.1",
+    "reactstrap": "^6.3.1",
+    "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.5",
+    "redux-form": "^7.4.2",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "3.3.3",
+    "url": "^0.11.0"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx|js)": "ts-jest"
+    },
+    "testRegex": "/__tests__/.*\\.test\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__tests_config__/mocks/fileMock.ts",
+      "\\.(css|less)$": "<rootDir>/__tests_config__/mocks/styleMock.ts"
+    },
+    "setupFiles": [
+      "./__tests_config__/testsSetup.ts"
+    ],
+    "testURL": "http://localhost",
+    "setupTestFrameworkScriptFile": "./__tests_config__/setupStyledComponentsTests.ts",
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!**/node_modules/**"
+    ],
+    "coveragePathIgnorePatterns": [
+      ".test.",
+      ".d.ts",
+      "src/index.tsx",
+      "polyfill.ts",
+      "serviceWorker.ts"
+    ],
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!react-redux|lodash-es)"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.jest.json"
+      }
+    }
+  }
+}
