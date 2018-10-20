@@ -7,9 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import lombok.Builder;
+import lombok.Data;
 
 @Entity
 @Builder
+@Data
 public class Cuisine {
 
     @Id

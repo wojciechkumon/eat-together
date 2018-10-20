@@ -2,6 +2,7 @@ package com.blackheronteam.EatTogether.service;
 
 import com.blackheronteam.EatTogether.domain.Address;
 import com.blackheronteam.EatTogether.domain.Cuisine;
+import com.blackheronteam.EatTogether.domain.CuisineType;
 import com.blackheronteam.EatTogether.domain.Event;
 import com.blackheronteam.EatTogether.dto.EventDto;
 import com.blackheronteam.EatTogether.repository.EventRepository;
@@ -60,7 +61,7 @@ public class EventAddressService {
         );
 
 
-        event.setCuisines(eventDto.getCuisines().stream().map(cuisineType -> Cuisine.builder().cuisineType(cuisineType).build()).collect(Collectors.toList()));
+        event.setCuisines(eventDto.getCuisines().stream().map(cuisineType -> Cuisine.builder().cuisineType(CuisineType.valueOf(cuisineType)).build()).collect(Collectors.toList()));
         event.setDateTime(LocalDateTime.now());
 //        event.setDateTime(LocalDateTime.parse(eventDto.getDateTime()));
 
@@ -85,7 +86,7 @@ public class EventAddressService {
         event.setAddress(address);
 
 
-        event.setCuisines(eventDto.getCuisines().stream().map(cuisineType -> Cuisine.builder().cuisineType(cuisineType).build()).collect(Collectors.toList()));
+        event.setCuisines(eventDto.getCuisines().stream().map(cuisineType -> Cuisine.builder().cuisineType(CuisineType.valueOf(cuisineType)).build()).collect(Collectors.toList()));
 //        event.setDateTime(LocalDateTime.now());
         event.setDateTime(LocalDateTime.parse(eventDto.getDateTime()));
 

@@ -43,7 +43,10 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
         zip,
         country,
         meals
-      })
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     }))
       .then(checkStatus)
       .then(response => {
@@ -53,11 +56,12 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
   };
 
   toggleCheckbox = (foodName: string) => {
+    const upFoodName = foodName.toUpperCase();
     const cuisines: string[] = this.state.cuisines;
-    if (cuisines.includes(foodName)) {
-      this.setState({cuisines: cuisines.filter(name => name !== foodName)})
+    if (cuisines.includes(upFoodName)) {
+      this.setState({cuisines: cuisines.filter(name => name !== upFoodName)})
     } else {
-      this.setState({cuisines: cuisines.concat([foodName])})
+      this.setState({cuisines: cuisines.concat([upFoodName])})
     }
   };
 

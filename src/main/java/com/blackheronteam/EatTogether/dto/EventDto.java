@@ -1,10 +1,7 @@
 package com.blackheronteam.EatTogether.dto;
 
-import com.blackheronteam.EatTogether.domain.CuisineType;
-
 import java.util.List;
 
-import com.blackheronteam.EatTogether.domain.Meal;
 import lombok.Data;
 
 @Data
@@ -16,7 +13,7 @@ public class EventDto {
 
     Long maxParticipants;
 
-    List<CuisineType> cuisines;
+    List<String> cuisines;
 
     String dateTime;
 

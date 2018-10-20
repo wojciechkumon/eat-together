@@ -2,17 +2,15 @@ package com.blackheronteam.EatTogether.controller;
 
 import com.blackheronteam.EatTogether.domain.Address;
 import com.blackheronteam.EatTogether.domain.Cuisine;
+import com.blackheronteam.EatTogether.domain.CuisineType;
 import com.blackheronteam.EatTogether.domain.Event;
-import com.blackheronteam.EatTogether.domain.Intolerance;
-import com.blackheronteam.EatTogether.domain.Meal;
 import com.blackheronteam.EatTogether.dto.EventDto;
 import com.blackheronteam.EatTogether.dto.MealDto;
 import com.blackheronteam.EatTogether.repository.AddressRepository;
 import com.blackheronteam.EatTogether.repository.EventRepository;
 import com.blackheronteam.EatTogether.repository.MealRepository;
 import com.blackheronteam.EatTogether.service.EventAddressService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 
 @RestController
@@ -43,7 +43,7 @@ public class EventController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public void addEvent(@RequestBody EventDto eventDto) {
         Address address = Address.builder()
                 .country(eventDto.getCountry())
@@ -62,7 +62,7 @@ public class EventController {
         event.setCurrency(eventDto.getCurrency());
         event.setMaxParticipants(eventDto.getMaxParticipants());
         event.setAddress(address);
-        event.setCuisines(eventDto.getCuisines().stream().map(cuisineType -> Cuisine.builder().cuisineType(cuisineType).build()).collect(Collectors.toList()));
+        event.setCuisines(eventDto.getCuisines().stream().map(cuisineType -> Cuisine.builder().cuisineType(CuisineType.valueOf(cuisineType)).build()).collect(Collectors.toList()));
         event.setDateTime(LocalDateTime.parse(eventDto.getDateTime()));
 
 //        event.setLatitude();
