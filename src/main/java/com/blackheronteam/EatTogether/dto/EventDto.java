@@ -17,6 +17,8 @@ public class EventDto {
 
     List<CuisineType> cuisines;
 
+    String dateTime;
+
     String streetWithNumber;
     String city;
     String phoneNumber;

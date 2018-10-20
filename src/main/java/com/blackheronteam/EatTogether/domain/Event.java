@@ -1,5 +1,6 @@
 package com.blackheronteam.EatTogether.domain;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -29,6 +30,8 @@ public class Event {
 
     @OneToMany
     List<Cuisine> cuisines;
+
+    LocalDateTime dateTime;
 
     @OneToOne
     Address address;

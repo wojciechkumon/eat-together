@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
@@ -50,6 +51,7 @@ public class EventController {
                 .build()
         );
         event.setCuisines(eventDto.getCuisines().stream().map(cuisineType -> Cuisine.builder().cuisineType(cuisineType).build()).collect(Collectors.toList()));
+        event.setDateTime(LocalDateTime.parse(eventDto.getDateTime()));
 
 //        event.setLatitude();
 //        event.setLongitude();
