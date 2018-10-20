@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import {MyEvent} from './Event';
 import FoodCategorySelector from "./FoodCategorySelector";
 
 // import EventCard from "./EventCard";
@@ -26,7 +27,7 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
                             <i className="fa fa-coins fa-2x"/><br/>
                             <small>Cheap</small>
                         </span>
-                  <input type="range" className="custom-range" min="0" max="2" id="customRange1"/>
+                  <input type="range" className="custom-range" min="1" max="50" step="1" id="customRange1"/>
                   <span className="justify-content-center">
                             <i className="fa fa-money-bill fa-2x"/><br/>
                             <small>Pricey</small>
@@ -37,7 +38,7 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
                             <i className="fa fa-walking fa-2x"/><br/>
                             <small>Near</small>
                         </span>
-                  <input type="range" className="custom-range" min="0" max="2" id="customRange2"/>
+                  <input type="range" className="custom-range" min="1" max="50" step="1" id="customRange2"/>
                   <span className="justify-content-center">
                             <i className="fa fa-plane fa-2x"/><br/>
                             <small>Far</small>
@@ -48,7 +49,7 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
                             <i className="fa fa-calendar-minus fa-2x"/><br/>
                             <small>Soon</small>
                         </span>
-                  <input type="range" className="custom-range" min="0" max="2" id="customRange3"/>
+                  <input type="range" className="custom-range" min="1" max="30" step="1" id="customRange3"/>
                   <span className="justify-content-center">
                             <i className="fa fa-calendar-plus fa-2x"/><br/>
                             <small>Distant</small>
@@ -176,6 +177,7 @@ const SearchResult = styled.div`
 
 interface SearchModalProps {
   setMap: (position: number[], zoom: number) => void;
+  allEvents: MyEvent[];
 }
 
 interface SearchModalState {
