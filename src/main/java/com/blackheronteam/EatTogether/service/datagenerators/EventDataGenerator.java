@@ -45,30 +45,27 @@ public class EventDataGenerator implements Generator {
                                 .name("Gnocchi with mushrooms & blue cheese")
                                 .intolerances(Collections.singletonList(Intolerance.builder()
                                         .intoleranceType(IntoleranceType.FISH).build()))
-                                .ingredients("2 x 400g packs fresh gnocchi\n" +
-                                        "1 tbsp olive oil\n" +
-                                        "knob of butter\n" +
-                                        "1 large onion\n" +
-                                        "500g small Forestière or Portobello mushrooms, sliced\n" +
-                                        "2 large garlic cloves, chopped\n" +
-                                        "150g pack creamy blue cheese (we used Danish blue)\n" +
-                                        ", chopped").build(),
+                                .ingredients("gnocchi," +
+                                        "olive oil," +
+                                        "butter," +
+                                        "onion," +
+                                        "mushrooms," +
+                                        "garlic," +
+                                        "creamy blue cheese")
+                                .build(),
 
                         Meal.builder()
                                 .name("Green burgers")
                                 .intolerances(Collections.singletonList(Intolerance.builder()
                                         .intoleranceType(IntoleranceType.FISH).build()))
-                                .ingredients("2 tbsp olive oil\n" +
-                                        "2 onions\n" +
-                                        ", finely chopped\n" +
-                                        "250g bag spinach\n" +
-                                        "good grating of fresh nutmeg\n" +
-                                        "100g mature cheddar, grated\n" +
-                                        "40g parmesan\n" +
-                                        ", finely grated\n" +
-                                        "1-2 large eggs, beaten\n" +
-                                        "3 tbsp plain flour").build()
-
+                                .ingredients("olive oil," +
+                                        "onion," +
+                                        "spinach," +
+                                        "cheddar," +
+                                        "parmesan," +
+                                        "eggs," +
+                                        "plain flour")
+                                .build()
                         ))
                 .description("Soft, creamy goat's cheese or a deliciously strong blue cheese both work well in this easy veggie supper that's on the table in just 20 minutes and Green Burger")
                 .organizerId(userList.get(0).getId())

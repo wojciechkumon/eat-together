@@ -3,7 +3,6 @@ package com.blackheronteam.EatTogether.service;
 import com.blackheronteam.EatTogether.domain.Address;
 import com.blackheronteam.EatTogether.domain.User;
 import com.blackheronteam.EatTogether.repository.EventRepository;
-import com.blackheronteam.EatTogether.service.datagenerators.AddressDataGenerator;
 import com.blackheronteam.EatTogether.service.datagenerators.EventDataGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,7 +17,6 @@ public class InitUsersService {
     private final BCryptPasswordEncoder encoder;
     private final UserService userService;
     private final EventAddressService eventAddressService;
-    private final AddressDataGenerator addressDataGenerator;
     private final EventRepository eventRepository;
 
     private final EventDataGenerator eventDataGenerator;
@@ -26,9 +24,6 @@ public class InitUsersService {
     @PostConstruct
     public void init() {
         cleanup();
-
-//        addressDataGenerator.generate();
-
         initUsers();
         eventDataGenerator.generate();
 

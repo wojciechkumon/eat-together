@@ -1,6 +1,8 @@
 package com.blackheronteam.EatTogether.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,6 +13,8 @@ import java.util.List;
 
 @Entity
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Meal {
 
     @Id
@@ -20,6 +24,4 @@ public class Meal {
     String ingredients;
     @OneToMany(cascade = CascadeType.ALL)
     List<Intolerance> intolerances;
-//    @OneToMany(targetEntity=Intolerance.class, mappedBy = "id")
-//    List<IntoleranceType> intolerances;
 }
