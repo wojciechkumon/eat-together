@@ -1,5 +1,5 @@
 export interface Meal {
   name: string;
-  ingredients: string[];
+  ingredients: string;
   intolerances: string[];
 }
