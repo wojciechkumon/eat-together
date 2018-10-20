@@ -4,7 +4,7 @@ import {checkStatus, withToken} from '../utils/api';
 import {copy} from '../utils/copy';
 import FoodCategorySelector from './FoodCategorySelector';
 import {intolerancesTypes} from './intolerancesTypes';
-import {Meal} from './Meal';
+import {Meal} from './Event';
 
 class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
   state = {

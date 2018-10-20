@@ -2,9 +2,12 @@ import * as React from 'react';
 import styled from 'styled-components';
 import FoodCategorySelector from "./FoodCategorySelector";
 
+// import EventCard from "./EventCard";
+
 class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState> {
 
   render() {
+    // const {setMap} = this.props;
     return (
       <SearchModalDialog id="search-modal" className="modal fade" tabIndex={-1} role="dialog">
         <div className="modal-dialog m-0 mw-100" role="document">
@@ -63,6 +66,11 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
               </div>
 
               <SearchResult>
+                {/*TODO Loop fru events*/}
+                {/*<EventCard myEvent={} buttons={[*/}
+                {/*() => <a className="btn btn-sm btn-outline-dark" onClick={() => setMap([], 13)} href="#">See on map</a>,*/}
+                {/*() => <a className="btn btn-sm btn-outline-dark" onClick={() => setMap([], 13)} href="#">Details</a>*/}
+                {/*]}/>*/}
                 <div className="card">
                   <div
                     className="card-header background-et text-white d-flex justify-content-between">

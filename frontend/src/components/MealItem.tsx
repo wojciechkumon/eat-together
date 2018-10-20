@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Meal} from "./Meal";
+import {FullMeal} from "./Event";
 import {intolerancesTypes} from "./intolerancesTypes";
 
 class MealItem extends React.PureComponent<MealItemProps> {
@@ -17,7 +17,7 @@ class MealItem extends React.PureComponent<MealItemProps> {
           </div>
           <div>
             {meal.intolerances.map(intolerance =>
-              intolerancesTypes.filter(x => x.name === intolerance).map(intoleranceType =>
+              intolerancesTypes.filter(x => x.name === intolerance.intoleranceType).map(intoleranceType =>
                 <button type="button" className="btn btn-outline-secondary"><span
                   style={{textDecoration: 'line-through'}}>{intoleranceType.icon}</span> {intoleranceType.text}</button>
               )
@@ -30,7 +30,7 @@ class MealItem extends React.PureComponent<MealItemProps> {
 }
 
 interface MealItemProps {
-  meal: Meal;
+  meal: FullMeal;
 }
 
 export default MealItem;

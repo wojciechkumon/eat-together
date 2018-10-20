@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Event} from './EventInterface';
+import {MyEvent} from './Event';
 import {foodCategories} from "./foodCategories";
 
 class EventCard extends React.PureComponent<EventCardProps> {
@@ -13,16 +13,16 @@ class EventCard extends React.PureComponent<EventCardProps> {
 
   render() {
     const {
-      event,
+      myEvent,
       buttons
     } = this.props;
 
     return (
       <div className="card">
         <div className="card-header background-et text-white d-flex justify-content-between">
-          <span>{event.name}</span>
+          <span>{myEvent.event.name}</span>
           <span>
-          {event.cuisines.map(couisine =>
+          {myEvent.event.cuisines.map(couisine =>
             foodCategories.filter(x => x.foodName === couisine).map(foodCategory =>
               foodCategory.foodIcon
             )
@@ -30,20 +30,19 @@ class EventCard extends React.PureComponent<EventCardProps> {
           </span>
         </div>
         <div className="card-header d-flex justify-content-between">
-          <span><i className="far fa-clock"/>{event.dateTime}</span>
-          <span>{event.estimatedPrice}</span>
-          <span><i className="fa fa-user"/>
-            {/*TODO {actualPersonsCount}/*/}
-            {event.maxParticipants}
-            </span>
+          <span><i className="far fa-clock"/>{myEvent.event.dateTime}</span>
+          <span>{myEvent.event.estimatedPrice}</span>
+          <span><i className="fa fa-user"/>{myEvent.event.participants.length}/{myEvent.event.maxParticipants}</span>
         </div>
         <div className="card-body p-2">
           <h5 className="card-title d-flex justify-content-between">
-            {/* TODO {hostName}<span>{this.hostRatingRender(hostRating)}</span>*/}
+            {myEvent.organizer.firstName}<span>{this.hostRatingRender(myEvent.organizer.rating)}</span>
           </h5>
-          <p className="card-text">{event.description}</p>
+          <p className="card-text">{myEvent.event.description}</p>
           <div className="d-flex justify-content-around">
-            {buttons}
+            {buttons.map(button =>
+              button
+            )}
           </div>
         </div>
       </div>
@@ -52,8 +51,8 @@ class EventCard extends React.PureComponent<EventCardProps> {
 }
 
 interface EventCardProps {
-  event: Event,
-  buttons: React.ReactNode
+  myEvent: MyEvent,
+  buttons: React.ReactNode[]
 }
 
 export default EventCard;

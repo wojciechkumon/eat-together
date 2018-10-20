@@ -1,12 +1,12 @@
 import * as React from 'react';
-import {Event} from './EventInterface';
+import {MyEvent} from './Event';
 import {foodCategories} from "./foodCategories";
 import MealItem from "./MealItem";
 
 class EventDetailsModal extends React.PureComponent<EventDetailsModalProps> {
 
   render() {
-    const {event} = this.props;
+    const {myEvent} = this.props;
     return (
       <div id="my-events-modal" className="modal fade" tabIndex={-1} role="dialog">
         <div className="modal-dialog m-0 mw-100" role="document">
@@ -21,26 +21,23 @@ class EventDetailsModal extends React.PureComponent<EventDetailsModalProps> {
             <div className="modal-body h-100 flex-grow-1">
               <div className="flex-column justify-content-between">
                   <span>
-                    {event.cuisines.map(couisine =>
+                    {myEvent.event.cuisines.map(couisine =>
                       foodCategories.filter(x => x.foodName === couisine).map(foodCategory =>
                         foodCategory.foodIcon
                       )
                     )}
                   </span>
-                <span><i className="far fa-clock"/>{event.dateTime}</span>
-                <span>{event.estimatedPrice}</span>
-                <span><i className="fa fa-user"/>
-                  {/* TODO {actualPersonsCount}/*/}
-                  {event.maxParticipants}
-                  </span>
+                <span><i className="far fa-clock"/>{myEvent.event.dateTime}</span>
+                <span>{myEvent.event.estimatedPrice}</span>
+                <span><i className="fa fa-user"/>{myEvent.event.participants.length}/{myEvent.event.maxParticipants}</span>
               </div>
               <hr/>
               <div className="flex-column justify-content-between">
-                <p>{event.description}</p>
+                <p>{myEvent.event.description}</p>
               </div>
               <hr/>
               <div className="flex-column justify-content-between">
-                {event.meals.map(meal =>
+                {myEvent.event.meals.map(meal =>
                   <MealItem meal={meal}/>
                 )}
               </div>
@@ -53,7 +50,7 @@ class EventDetailsModal extends React.PureComponent<EventDetailsModalProps> {
 }
 
 interface EventDetailsModalProps {
-  event: Event;
+  myEvent: MyEvent;
 }
 
 export default EventDetailsModal;
