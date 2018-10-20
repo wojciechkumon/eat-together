@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import FoodCategorySelector from "./FoodCategorySelector";
 
-class SearchModal extends React.PureComponent<{}, SearchModalState> {
+class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState> {
 
   render() {
     return (
@@ -165,6 +165,10 @@ const SearchResult = styled.div`
     color: #3B653D;
   }
 `;
+
+interface SearchModalProps {
+  setMap: (position: number[], zoom: number) => void;
+}
 
 interface SearchModalState {
   menuOpen: boolean;

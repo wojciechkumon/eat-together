@@ -10,7 +10,9 @@ import {appConfig} from '../config/appConfig';
 
 class LandingPage extends React.PureComponent<RouteComponentProps<{}>, LandingPageState> {
   state = {
-    menuOpen: false
+    menuOpen: false,
+    position: [52.232319, 20.984004],
+    zoom: 13
   };
 
   logout = () => {
@@ -18,7 +20,19 @@ class LandingPage extends React.PureComponent<RouteComponentProps<{}>, LandingPa
     this.props.history.push(appConfig.routes.login);
   };
 
+  findAll = () => {
+    // fetch(new Request(withToken(appConfig.api.events), {
+    //   method: 'GET'
+    // }))
+    //   .then(checkStatus)
+    //   .then(response => response.json()  )
+    //   .then(json => )
+    //   .catch(() => console.log('error'));
+  };
+
   render() {
+    const {position, zoom} = this.state;
+    const setMap = (position: number[], zoom: number) => this.setState({zoom, position});
     return (
       <>
         <div className="d-flex flex-column h-100">
@@ -65,10 +79,10 @@ class LandingPage extends React.PureComponent<RouteComponentProps<{}>, LandingPa
             </a>
           </nav>
           <div className="d-flex flex-column flex-grow-1">
-            <Map/>
+            <Map position={position} zoom={zoom}/>
           </div>
         </div>
-        <SearchModal/>
+        <SearchModal setMap={setMap}/>
         <AboutModal/>
         <NewEventModal/>
         <MyEventsModal/>
@@ -91,6 +105,8 @@ const MainMenu = styled.div`
 
 interface LandingPageState {
   menuOpen: boolean;
+  position: number[];
+  zoom: number;
 }
 
 export default withRouter(LandingPage);

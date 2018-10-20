@@ -1,17 +1,12 @@
 import * as React from 'react';
 import {Map as LeafletMap, Marker, Popup, TileLayer} from 'react-leaflet';
 
-class Map extends React.PureComponent<{}, MapState> {
-  state = {
-    lat: 51.505,
-    lng: -0.09,
-    zoom: 13
-  };
+class Map extends React.PureComponent<MapProps> {
 
   render() {
-    const position = [51.505, -0.09];
+    const {position, zoom} = this.props;
     return (
-      <LeafletMap center={position} zoom={13} className="h-100 flex-grow-1" style={{zIndex: 10}}>
+      <LeafletMap center={position} zoom={zoom} className="h-100 flex-grow-1" style={{zIndex: 10}}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
@@ -23,9 +18,8 @@ class Map extends React.PureComponent<{}, MapState> {
   }
 }
 
-interface MapState {
-  lat: number;
-  lng: number;
+interface MapProps {
+  position: number[];
   zoom: number;
 }
 
