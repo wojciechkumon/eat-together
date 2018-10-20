@@ -2,9 +2,12 @@ package com.blackheronteam.EatTogether.service;
 
 import com.blackheronteam.EatTogether.domain.User;
 import com.blackheronteam.EatTogether.repository.AddressRepository;
+import com.blackheronteam.EatTogether.repository.EventRepository;
 import com.blackheronteam.EatTogether.repository.UserRepository;
 import com.blackheronteam.EatTogether.service.UserService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,12 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private AddressRepository addressRepository;
+    @Autowired
+    private EventRepository eventRepository;
 
     @Override
     public List<User> findAllUsers() {
@@ -58,6 +64,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void dropUsers() {
+        eventRepository.deleteAll();
         userRepository.deleteAll();
     }
 

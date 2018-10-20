@@ -30,17 +30,7 @@ public class User implements UserDetails {
     private String lastName;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Address address;
-/*    @OneToMany(
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    List<UserRate> userRates = new ArrayList<>();
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    List<ChefRate> chefRates = new ArrayList<>();*/
-
+    private Integer rating;
 
     public User(String username, String password, String firstName, String lastName) {
         this.username = username;

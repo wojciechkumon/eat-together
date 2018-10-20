@@ -5,6 +5,8 @@ import com.blackheronteam.EatTogether.dto.EventDto;
 import com.blackheronteam.EatTogether.service.EventAddressService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+
+import com.blackheronteam.EatTogether.service.EventService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EventController {
     private final EventAddressService eventAddressService;
+    private final EventService eventService;
 
     @PostMapping("/add-test")
     public ResponseEntity<?> addEvent(@RequestParam("eventName") String name) {
@@ -40,5 +43,10 @@ public class EventController {
     @GetMapping
     public List<Event> allEvents() {
         return eventAddressService.getAll();
+    }
+
+    @PostMapping("/join")
+    public void joinEvent(@RequestBody Long eventId, Principal principal) {
+        eventService.joinEvent(eventId, principal.getName());
     }
 }
