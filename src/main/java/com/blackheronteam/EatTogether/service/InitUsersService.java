@@ -86,7 +86,7 @@ public class InitUsersService {
                 .build());
 
 
-        eventAddressService.updateEventAddressCoordinates(
+        eventAddressService.saveAndUpdateCoordinates(
                 Event.builder()
                         .address(address1)
                         .cuisines(Arrays.asList(Cuisine.builder().cuisineType(CuisineType.CAKE).build()))

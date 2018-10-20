@@ -30,11 +30,4 @@ public class EventController {
 
 
     }
-
-    private void saveMeal(MealDto mealDto) {
-//        Meal meal = Meal.builder()
-//                .mealName(mealDto.getMealName())
-//                .ingredients(new ArrayList<>(mealDto.getIngredients()))
-//                .intolerances(mealDto.getIntolerances().stream().map(intolerance -> Intolerance.builder().intoleranceType(intolerance)))
-    }
 }

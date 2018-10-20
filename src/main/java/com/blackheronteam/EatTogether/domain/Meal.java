@@ -2,11 +2,11 @@ package com.blackheronteam.EatTogether.domain;
 
 import lombok.Builder;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,8 +17,9 @@ public class Meal {
     @GeneratedValue
     Long id;
     String mealName;
-    ArrayList<String> ingredients = new ArrayList<>();
-    ArrayList<String> intolerances = new ArrayList<>();
+    String ingredients;
+    @OneToMany(cascade = CascadeType.ALL)
+    List<Intolerance> intolerances;
 //    @OneToMany(targetEntity=Intolerance.class, mappedBy = "id")
 //    List<IntoleranceType> intolerances;
 }
