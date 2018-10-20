@@ -8,7 +8,7 @@ class Map extends React.PureComponent<MapProps> {
     return (
       <LeafletMap center={position} zoom={zoom} className="h-100 flex-grow-1" style={{zIndex: 10}}>
         <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url="https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicGZlZG9yb3dpYXQiLCJhIjoiY2puYnVjbmoxMDd1ejN3b2xrcWVoeWR2aSJ9.9ryAquSevShTqIrxmnL4ag"
         />
         {markers.map(marker =>
           <Marker key={marker.position} position={position}>
