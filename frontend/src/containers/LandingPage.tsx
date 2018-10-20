@@ -1,5 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import AboutModal from '../components/AboutModal';
+import MyEventsModal from '../components/MyEventsModal';
+import NewEventModal from '../components/NewEventModal';
 import SearchModal from '../components/SearchModal';
 
 class LandingPage extends React.PureComponent<{}, LandingPageState> {
@@ -58,6 +61,9 @@ class LandingPage extends React.PureComponent<{}, LandingPageState> {
           </div>
         </div>
         <SearchModal/>
+        <AboutModal/>
+        <NewEventModal/>
+        <MyEventsModal/>
       </>
     );
   }
