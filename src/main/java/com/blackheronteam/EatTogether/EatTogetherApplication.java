@@ -1,6 +1,7 @@
 package com.blackheronteam.EatTogether;
 
 import com.blackheronteam.EatTogether.domain.UserService;
+import com.blackheronteam.EatTogether.domain.UserServiceImpl;
 import com.blackheronteam.EatTogether.domain.UserServiceInMemoryServiceImpl;
 import com.blackheronteam.EatTogether.service.AddressLookupService;
 import org.springframework.boot.SpringApplication;
@@ -17,12 +18,12 @@ public class EatTogetherApplication {
 
     @Bean
     public UserService userService() {
-        return new UserServiceInMemoryServiceImpl();
+        return new UserServiceImpl();
     }
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new UserServiceInMemoryServiceImpl();
+        return new UserServiceImpl();
     }
 
     @Bean
