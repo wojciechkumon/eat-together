@@ -1,17 +1,18 @@
 package com.blackheronteam.EatTogether.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@ToString
-@Setter
-@Getter
+@Data
 public class Event {
 
     @Id
@@ -25,7 +26,7 @@ public class Event {
     Long organizerId;
     Long maxParticipants;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     List<Cuisine> cuisines;
 
     LocalDateTime dateTime;
@@ -34,4 +35,7 @@ public class Event {
     Address address;
     Double latitude;
     Double longitude;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    List<Meal> meals;
 }

@@ -2,9 +2,11 @@ import * as React from 'react';
 import {appConfig} from '../config/appConfig';
 import {checkStatus, withToken} from '../utils/api';
 import FoodCategorySelector from './FoodCategorySelector';
+import {Meal} from './MealInterface';
 
 class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
   state = {
+    page: 1,
     name: '',
     description: '',
     estimatedPrice: 2.50,
@@ -16,7 +18,8 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
     city: '',
     phoneNumber: '',
     zip: '',
-    country: ''
+    country: '',
+    meals: []
   };
 
   submit = e => {
@@ -58,7 +61,17 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
   };
 
   render() {
-    const {name, description, estimatedPrice, currency, maxParticipants, dateTime, phoneNumber, streetWithNumber, country, city, zip, cuisines} = this.state;
+    const {page, name, description, estimatedPrice, currency, maxParticipants, dateTime, phoneNumber, streetWithNumber, country, city, zip, cuisines} = this.state;
+    const meals: Meal[] = this.state.meals;
+    const mealIndex = page - 2;
+    if (mealIndex >= 0 && !meals[mealIndex]) {
+      meals[mealIndex] = {
+        name: '',
+        ingredients: [],
+        intolerances: []
+      };
+    }
+
 
     return (
       <div id="new-event-modal" className="modal fade" tabIndex={-1} role="dialog">
@@ -73,6 +86,8 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
             </div>
             <form onSubmit={this.submit}>
               <div className="modal-body h-100 flex-grow-1">
+                {page === 1 &&
+
                 <div id="new-item-modal-form" className="flex-column justify-content-center">
 
                   <div className="form-group">
@@ -124,7 +139,8 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
                       <label htmlFor="date-time-input">When?</label>
                       <input value={dateTime}
                              onChange={e => this.setState({dateTime: e.target.value})}
-                             id="date-time-input" className="form-control p-1 mb-3" type="datetime-local"
+                             id="date-time-input" className="form-control p-1 mb-3"
+                             type="datetime-local"
                              name="date-time"/>
                       <input value={phoneNumber}
                              onChange={e => this.setState({phoneNumber: e.target.value})}
@@ -155,11 +171,39 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
                   <FoodCategorySelector type="checkbox" selected={cuisines}
                                         toggle={this.toggleCheckbox}/>
                 </div>
+                }
+                {
+                  page > 1 &&
+                  <div id="new-item-modal-form" className="flex-column justify-content-center">
+                    <div className="form-group">
+                      <label htmlFor="event-name">Meal #{page - 1} name</label>
+                      <input value={meals[mealIndex].name}
+                             onChange={e => this.setState({name: e.target.value})}
+                             type="text" className="form-control" id="event-name"
+                             aria-describedby=""
+                             placeholder="eg Sushi Kushi"/>
+                      <small>Use creative name to attract guests</small>
+                    </div>
+                  </div>
+                }
                 <div className="modal-footer d-flex justify-content-between">
-                  <button type="button" className="btn-outline-info btn btn-secondary"
-                          data-dismiss="modal">Cancel
+                  {page > 1
+                    ?
+                    <button type="button" onClick={() => this.setState({page: this.state.page - 1})}
+                            className="btn-outline-info btn btn-secondary">Back
+                    </button>
+                    :
+                    <button type="button" className="btn-outline-info btn btn-danger"
+                            data-dismiss="modal">Cancel
+                    </button>
+                  }
+
+                  <button className="btn btn-outline-success"
+                          onClick={() => this.setState({page: this.state.page + 1})}>Add Meal
                   </button>
-                  <button type="submit" className="btn btn-outline-success">Add Event</button>
+                  {page > 1 &&
+                  <button type="submit" className="btn btn-outline-success">Finish</button>
+                  }
                 </div>
               </div>
             </form>
@@ -171,6 +215,7 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
 }
 
 interface NewEventModalState {
+  page: number;
   name: string;
   description: string;
   estimatedPrice: number;
@@ -183,6 +228,7 @@ interface NewEventModalState {
   phoneNumber: string;
   zip: string;
   country: string;
+  meals: Meal[];
 }
 
 export default NewEventModal;
