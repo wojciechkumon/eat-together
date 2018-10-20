@@ -36,7 +36,7 @@ class LandingPage extends React.PureComponent<RouteComponentProps<{}>, LandingPa
       .then(checkStatus)
       .then(response => response.json())
       .then(json => this.setState({allEvents: json}))
-      .catch(() => console.log('error'));
+      .catch(() => console.error('error'));
   };
 
   render() {

@@ -1,0 +1,132 @@
+[
+  {
+    "firstName": "Stanislawa",
+    "lastName": "Zawadzka",
+    "username": "sta@gmail.com",
+    "password": "67051171129",
+    "rating": 3,
+    "address": {
+      "city": "Gdynia",
+      "phoneNumber": "",
+      "streetWithNumber": "ul. Ateny 80",
+      "zip": "81-601"
+    }
+  },
+  {
+    "firstName": "Rajmund",
+    "lastName": "Wieczorek",
+    "username": "raj@gmail.com",
+    "password": "60090702677",
+    "rating": 4,
+    "address": {
+      "city": "Krakow",
+      "phoneNumber": "51 716 72 08",
+      "streetWithNumber": "ul Mlynowa 36",
+      "zip": "30-412"
+      }
+    },
+  {
+    "firstName": "Beata",
+    "lastName": "Wisniewska",
+    "username": "bea@gmail.com",
+    "password": "67081958129",
+    "rating": 2,
+    "address": {
+      "city": "Warszawa",
+      "phoneNumber": "51 515 91 26",
+      "streetWithNumber": "ul. Chodakowska 28",
+      "zip": "03-826"
+    }
+  },
+  {
+    "firstName": "Michal",
+    "lastName": "Zielinski",
+    "username": "mich@gmail.com",
+    "password": "84042913094",
+    "rating": 5,
+    "address": {
+      "city": "Rzeszow",
+      "phoneNumber": "79 123 06 62",
+      "streetWithNumber": "ul. Klosowa 49",
+      "zip": "35-230"
+    }
+  },
+  {
+    "firstName": "Henio",
+    "lastName": "Pawlak",
+    "username": "hen@gmail.com",
+    "password": "42022685254",
+    "rating": 5,
+    "address": {
+      "city": "Poznan",
+      "phoneNumber": "88 725 16 42",
+      "streetWithNumber": "ul. Slowackiego Juliusza 31",
+      "zip": "60-825"
+    }
+  },
+  {
+    "firstName": "Gertruda",
+    "lastName": "Kowalska",
+    "username": "ger@gmail.com",
+    "password": "56031835627",
+    "rating": 3,
+    "address": {
+      "city": "Krakow",
+      "phoneNumber": "67 435 41 61",
+      "streetWithNumber": "ul. Ciechocinska 112",
+      "zip": "30-433"
+    }
+  },
+  {
+    "firstName": "Michal",
+    "lastName": "B.",
+    "username": "mic@gmail.com",
+    "password": "asdf1",
+    "rating": 4,
+    "address": {
+      "city": "Warszawa",
+      "phoneNumber": "",
+      "streetWithNumber": "plac Europejski 1",
+      "zip": "00-844"
+    }
+  },
+  {
+    "firstName": "Przemek",
+    "lastName": "F.",
+    "username": "prz@gmail.com",
+    "password": "asdf2",
+    "rating": 4,
+    "address": {
+      "city": "Warszawa",
+      "phoneNumber": "535 346 543",
+      "streetWithNumber": "plac Europejski 1",
+      "zip": "00-844"
+    }
+  },
+  {
+    "firstName": "Gaba",
+    "lastName": "B.",
+    "username": "gab@gmail.com",
+    "password": "asdf",
+    "rating": 3,
+    "address": {
+      "city": "Warszawa",
+      "phoneNumber": "535 346 543",
+      "streetWithNumber": "plac Europejski 1",
+      "zip": "00-844"
+    }
+  },
+  {
+    "firstName": "Wojtek",
+    "lastName": "K.",
+    "username": "woj@gmail.com",
+    "password": "asdf3",
+    "rating": 5,
+    "address": {
+      "city": "Warszawa",
+      "phoneNumber": "535 346 543",
+      "streetWithNumber": "plac Europejski 1",
+      "zip": "00-844"
+    }
+  }
+]
