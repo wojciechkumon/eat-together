@@ -11,4 +11,8 @@ public class Currency {
     @GeneratedValue
     Long id;
     String currency;
+
+    public Currency(String currency) {
+        this.currency = currency;
+    }
 }
