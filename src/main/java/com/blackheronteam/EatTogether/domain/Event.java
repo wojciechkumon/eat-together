@@ -1,10 +1,11 @@
 package com.blackheronteam.EatTogether.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.Setter;
@@ -26,8 +27,8 @@ public class Event {
     Long organizerId;
     Long maxParticipants;
 
-    @Enumerated(EnumType.STRING)
-    Cuisine cuisine;
+    @OneToMany
+    List<Cuisine> cuisines;
 
     @OneToOne
     Address address;

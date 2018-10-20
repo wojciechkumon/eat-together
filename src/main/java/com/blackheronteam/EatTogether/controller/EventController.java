@@ -1,6 +1,7 @@
 package com.blackheronteam.EatTogether.controller;
 
 import com.blackheronteam.EatTogether.domain.Address;
+import com.blackheronteam.EatTogether.domain.Cuisine;
 import com.blackheronteam.EatTogether.domain.Event;
 import com.blackheronteam.EatTogether.dto.EventDto;
 import com.blackheronteam.EatTogether.repository.EventRepository;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -30,7 +33,7 @@ public class EventController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public void addEvent(EventDto eventDto) {
         Event event = new Event();
         event.setName(eventDto.getName());
@@ -46,7 +49,7 @@ public class EventController {
                 .phoneNumber(eventDto.getPhoneNumber())
                 .build()
         );
-        event.setCuisine(eventDto.getCuisine());
+        event.setCuisines(eventDto.getCuisines().stream().map(cuisineType -> Cuisine.builder().cuisineType(cuisineType).build()).collect(Collectors.toList()));
 
 //        event.setLatitude();
 //        event.setLongitude();

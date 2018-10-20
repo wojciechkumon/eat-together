@@ -1,6 +1,8 @@
 package com.blackheronteam.EatTogether.dto;
 
-import com.blackheronteam.EatTogether.domain.Cuisine;
+import com.blackheronteam.EatTogether.domain.CuisineType;
+
+import java.util.List;
 
 import lombok.Data;
 
@@ -11,10 +13,9 @@ public class EventDto {
     Long estimatedPrice;
     String currency;
 
-    Long organizerId;
     Long maxParticipants;
 
-    Cuisine cuisine;
+    List<CuisineType> cuisines;
 
     String streetWithNumber;
     String city;

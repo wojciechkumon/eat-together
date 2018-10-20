@@ -1,12 +1,21 @@
 package com.blackheronteam.EatTogether.domain;
 
-public enum Cuisine {
-    DUMPLINGS,
-    CAKE,
-    STEAK,
-    BURGERS,
-    ASIAN,
-    VEGE,
-    SOUP,
-    PASTA
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import lombok.Builder;
+
+@Entity
+@Builder
+public class Cuisine {
+
+    @Id
+    @GeneratedValue
+    Long id;
+
+    @Enumerated(EnumType.STRING)
+    CuisineType cuisineType;
 }
