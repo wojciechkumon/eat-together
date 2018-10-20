@@ -1,10 +1,7 @@
 package com.blackheronteam.EatTogether.service;
 
-import com.blackheronteam.EatTogether.domain.Address;
-import com.blackheronteam.EatTogether.domain.Cuisine;
-import com.blackheronteam.EatTogether.domain.CuisineType;
-import com.blackheronteam.EatTogether.domain.Event;
-import com.blackheronteam.EatTogether.domain.User;
+import com.blackheronteam.EatTogether.domain.*;
+import com.blackheronteam.EatTogether.service.datagenerators.AddressDataGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,12 +23,20 @@ public class InitUsersService {
     @Autowired
     private EventAddressService eventAddressService;
 
+    @Autowired
+    private AddressDataGenerator addressDataGenerator;
+
+
     public InitUsersService() {
     }
 
     @PostConstruct
     public void init() {
         initUsers();
+
+//        addressDataGenerator.generate();
+
+
     }
 
     private void initUsers() {
@@ -101,7 +106,7 @@ public class InitUsersService {
                         .maxParticipants(6L)
                         .build()
 
-                        );
+        );
     }
 
 }

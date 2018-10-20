@@ -3,6 +3,7 @@ package com.blackheronteam.EatTogether.service;
 import com.blackheronteam.EatTogether.domain.*;
 import com.blackheronteam.EatTogether.dto.EventDto;
 import com.blackheronteam.EatTogether.dto.MealDto;
+import com.blackheronteam.EatTogether.dto.MyEvent;
 import com.blackheronteam.EatTogether.repository.AddressRepository;
 import com.blackheronteam.EatTogether.repository.EventRepository;
 import com.blackheronteam.EatTogether.repository.UserRepository;
@@ -11,9 +12,11 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -91,9 +94,21 @@ public class EventAddressService {
         return eventRepository.findByOrganizerId(user.getId());
     }
 
-    public List<Event> getAll() {
-        List<Event> events = new ArrayList<>();
-        eventRepository.findAll().forEach(events::add);
+    public List<MyEvent> getAll(Principal principal) {
+        List<MyEvent> events = new ArrayList<>();
+        eventRepository.findAll().forEach(event -> {
+            // lacto = lactofree
+
+            Optional<User> organizer = userRepository.findById(event.getOrganizerId());
+            events.add(new MyEvent(
+                    organizer
+                            .orElseThrow(() ->
+                                    new IllegalArgumentException("User with id: " + event.getOrganizerId() + " not found")),
+                    event));
+
+        });
+
+
         return events;
     }
 }

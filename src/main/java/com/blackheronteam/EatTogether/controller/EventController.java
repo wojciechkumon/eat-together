@@ -2,11 +2,11 @@ package com.blackheronteam.EatTogether.controller;
 
 import com.blackheronteam.EatTogether.domain.Event;
 import com.blackheronteam.EatTogether.dto.EventDto;
+import com.blackheronteam.EatTogether.dto.MyEvent;
 import com.blackheronteam.EatTogether.service.EventAddressService;
+import com.blackheronteam.EatTogether.service.EventService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-
-import com.blackheronteam.EatTogether.service.EventService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,8 +41,8 @@ public class EventController {
     }
 
     @GetMapping
-    public List<Event> allEvents() {
-        return eventAddressService.getAll();
+    public List<MyEvent> allEvents(Principal principal) {
+        return eventAddressService.getAll(principal);
     }
 
     @PostMapping("/join")
