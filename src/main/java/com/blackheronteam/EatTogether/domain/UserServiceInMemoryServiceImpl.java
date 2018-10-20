@@ -1,13 +1,16 @@
 package com.blackheronteam.EatTogether.domain;
 
+import lombok.extern.log4j.Log4j2;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Log4j2
 public class UserServiceInMemoryServiceImpl implements UserService {
-    private static final List<User> user = Arrays.asList(
+    private static final List<User> users = Arrays.asList(
             new User("gab", "asdf", "Gaba", "B."),
             new User("mic", "asdf1", "Michal", "B."),
             new User("prz", "asdf2", "Przemek", "F."),
@@ -19,7 +22,7 @@ public class UserServiceInMemoryServiceImpl implements UserService {
 
     @Override
     public List<User> findAllUsers() {
-        return user;
+        return users;
     }
 
     @Override
@@ -44,6 +47,14 @@ public class UserServiceInMemoryServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+
+        log.info("loading by username " + username);
+        return users.stream().filter(u->u.getUsername().equals(username)).findAny().orElse(null);
     }
+
+    private List getAuthority() {
+        return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
+    }
+
+
 }
