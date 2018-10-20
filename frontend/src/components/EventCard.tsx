@@ -22,8 +22,8 @@ class EventCard extends React.PureComponent<EventCardProps> {
         <div className="card-header background-et text-white d-flex justify-content-between">
           <span>{myEvent.event.name}</span>
           <span>
-          {myEvent.event.cuisines.map(couisine =>
-            foodCategories.filter(x => x.foodName === couisine.cuisineType).map(foodCategory =>
+          {myEvent.event.cuisines.map(c => c.cuisineType).map(couisine =>
+            foodCategories.filter(x => x.foodName.toUpperCase() === couisine).map(foodCategory =>
               foodCategory.foodIcon
             )
           )}
