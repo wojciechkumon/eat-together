@@ -1,14 +1,20 @@
 package com.blackheronteam.EatTogether.service;
 
-import com.blackheronteam.EatTogether.domain.Address;
 import com.blackheronteam.EatTogether.domain.User;
 import com.blackheronteam.EatTogether.repository.EventRepository;
 import com.blackheronteam.EatTogether.service.datagenerators.EventDataGenerator;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -21,13 +27,14 @@ public class InitUsersService {
 
     private final EventDataGenerator eventDataGenerator;
 
+    @Value(value = "classpath:users.json")
+    private Resource users;
+
     @PostConstruct
     public void init() {
         cleanup();
         initUsers();
         eventDataGenerator.generate();
-
-
     }
 
     private void cleanup() {
@@ -36,73 +43,20 @@ public class InitUsersService {
     }
 
     private void initUsers() {
-        userService.saveUser(User.builder()
-                .firstName("Michal")
-                .lastName("B.")
-                .username("mic@gmail.com")
-                .password(encoder.encode("asdf1"))
-                .rating(4)
-                .address(Address.builder()
-                        .city("Warszawa")
-                        .phoneNumber("")
-                        .streetWithNumber("plac Europejski 1")
-                        .zip("00-844").build())
-                .build());
-        userService.saveUser(User.builder()
-                .firstName("Przemek")
-                .lastName("F.")
-                .username("prz@gmail.com")
-                .password(encoder.encode("asdf2"))
-                .rating(5)
-                .address(Address.builder()
-                        .city("Warszawa")
-                        .phoneNumber("")
-                        .streetWithNumber("plac Europejski 1")
-                        .zip("00-844").build())
-                .build());
-        userService.saveUser(User.builder()
-                .firstName("Gaba")
-                .lastName("B.")
-                .username("gab@gmail.com")
-                .password(encoder.encode("asdf"))
-                .rating(4)
-                .address(Address.builder()
-                        .city("Warszawa")
-                        .phoneNumber("")
-                        .streetWithNumber("plac Europejski 1")
-                        .zip("00-844").build())
-                .build());
-        userService.saveUser(User.builder()
-                .firstName("Wojtek")
-                .lastName("K.")
-                .username("woj@gmail.com")
-                .password(encoder.encode("asdf3"))
-                .rating(5)
-                .address(Address.builder()
-                        .city("Warszawa")
-                        .phoneNumber("")
-                        .streetWithNumber("plac Europejski 1")
-                        .zip("00-844").build())
-                .build());
 
-//        eventAddressService.saveAndUpdateCoordinates(
-//                Event.builder()
-//                        .address(Address.builder()
-//                                .city("Warszawa")
-//                                .phoneNumber("")
-//                                .streetWithNumber("Grzybowska 63")
-//                                .zip("00-844").build())
-//                        .cuisines(Arrays.asList(Cuisine.builder().cuisineType(CuisineType.CAKE).build()))
-//                        .currency("USD")
-//                        .dateTime(LocalDateTime.now())
-//                        .description("obiadek u babci")
-//                        .name("dinner")
-//                        .estimatedPrice(100L)
-//                        .meals(Collections.emptyList())
-//                        .maxParticipants(6L)
-//                        .build()
-//
-//        );
+        getUsers().forEach(user -> {
+            user.setPassword(encoder.encode("asdf"));
+            userService.saveUser(user);
+        });
+    }
+
+    private List<User> getUsers() {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.readValue(users.getInputStream(), new TypeReference<List<User>>(){});
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
     }
 
 }
