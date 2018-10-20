@@ -18,7 +18,7 @@ class MealItem extends React.PureComponent<MealItemProps> {
           <div>
             {meal.intolerances.map(intolerance =>
               intolerancesTypes.filter(x => x.name === intolerance.intoleranceType).map(intoleranceType =>
-                <button type="button" className="btn btn-outline-secondary"><span
+                <button type="button" className="btn btn-outline-secondary p-1"><span
                   style={{textDecoration: 'line-through'}}>{intoleranceType.icon}</span> {intoleranceType.text}</button>
               )
             )}

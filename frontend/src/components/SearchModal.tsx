@@ -39,7 +39,7 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
     const {selectedCuisine, price, distance, days} = this.state;
     const filteredEvents = this.filterEvents();
 
-    const {setMap} = this.props;
+    const {setMap, setEvent} = this.props;
     return (
       <SearchModalDialog id="search-modal" className="modal fade" tabIndex={-1} role="dialog">
         <div className="modal-dialog m-0 mw-100" role="document">
@@ -115,7 +115,11 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
                       setMap([myEvent.event.latitude, myEvent.event.longitude], 13);
                       (window as any).$('#search-modal').modal('hide');
                     }} href="#">See on map</a>,
-                    () => <a className="btn btn-sm btn-outline-dark" onClick={() => setMap([], 13)} href="#">Details</a>
+                    () => <a className="btn btn-sm btn-outline-dark" onClick={() => {
+                      setEvent(myEvent);
+                      (window as any).$('#search-modal').modal('hide');
+                      (window as any).$('#event-detail-modal').modal('show');
+                    }} href="#">Details</a>
                   ]}/>
                 )}
               </SearchResult>
@@ -151,6 +155,7 @@ const SearchResult = styled.div`
 interface SearchModalProps {
   setMap: (position: number[], zoom: number) => void;
   allEvents: MyEvent[];
+  setEvent: (myEvent: MyEvent) => void;
 }
 
 interface SearchModalState {

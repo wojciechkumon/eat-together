@@ -9,13 +9,15 @@ import NewEventModal from '../components/NewEventModal';
 import SearchModal from '../components/SearchModal';
 import {appConfig} from '../config/appConfig';
 import {checkStatus, withToken} from '../utils/api';
+import EventDetailsModal from "../components/EventDetailsModal";
 
 class LandingPage extends React.PureComponent<RouteComponentProps<{}>, LandingPageState> {
   state = {
     menuOpen: false,
     position: [52.232319, 20.984004],
     zoom: 13,
-    allEvents: []
+    allEvents: [],
+    myEvent: undefined
   };
 
   componentDidMount() {
@@ -38,9 +40,10 @@ class LandingPage extends React.PureComponent<RouteComponentProps<{}>, LandingPa
   };
 
   render() {
-    const {position, zoom} = this.state;
+    const {position, zoom, myEvent} = this.state;
     const allEvents: MyEvent[] = this.state.allEvents;
     const setMap = (position: number[], zoom: number) => this.setState({zoom, position});
+    const setEvent = (myEvent: MyEvent) => this.setState({myEvent});
     const markers: MarkerData[] = allEvents.map(myEvent => ({
       position: [myEvent.event.latitude, myEvent.event.longitude],
       text: myEvent.event.name
@@ -94,10 +97,11 @@ class LandingPage extends React.PureComponent<RouteComponentProps<{}>, LandingPa
             <Map position={position} zoom={zoom} markers={markers}/>
           </div>
         </div>
-        <SearchModal setMap={setMap} allEvents={allEvents}/>
+        <SearchModal setMap={setMap} allEvents={allEvents} setEvent={setEvent}/>
         <AboutModal/>
         <NewEventModal/>
         <MyEventsModal/>
+        <EventDetailsModal myEvent={myEvent}/>
       </>
     );
   }
@@ -120,6 +124,7 @@ interface LandingPageState {
   position: number[];
   zoom: number;
   allEvents: MyEvent[];
+  myEvent?: MyEvent;
 }
 
 export default withRouter(LandingPage);
