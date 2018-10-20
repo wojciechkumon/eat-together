@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Event} from './EventInterface';
+import {foodCategories} from "./foodCategories";
 
 class EventCard extends React.PureComponent<EventCardProps> {
   hostRatingRender = (hostRating) => {
@@ -20,7 +21,13 @@ class EventCard extends React.PureComponent<EventCardProps> {
       <div className="card">
         <div className="card-header background-et text-white d-flex justify-content-between">
           <span>{event.name}</span>
-          {/*<span> TODO CATEGORIES </span>*/}
+          <span>
+          {event.cuisines.map(couisine =>
+            foodCategories.filter(x => x.foodName === couisine).map(foodCategory =>
+              foodCategory.foodIcon
+            )
+          )}
+          </span>
         </div>
         <div className="card-header d-flex justify-content-between">
           <span><i className="far fa-clock"/>{event.dateTime}</span>
