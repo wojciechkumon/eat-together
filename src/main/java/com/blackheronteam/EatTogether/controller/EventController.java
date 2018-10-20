@@ -3,8 +3,6 @@ package com.blackheronteam.EatTogether.controller;
 import com.blackheronteam.EatTogether.domain.Address;
 import com.blackheronteam.EatTogether.domain.Cuisine;
 import com.blackheronteam.EatTogether.domain.Event;
-import com.blackheronteam.EatTogether.domain.Intolerance;
-import com.blackheronteam.EatTogether.domain.Meal;
 import com.blackheronteam.EatTogether.dto.EventDto;
 import com.blackheronteam.EatTogether.dto.MealDto;
 import com.blackheronteam.EatTogether.repository.AddressRepository;
@@ -15,14 +13,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 
@@ -55,7 +48,7 @@ public class EventController {
 
 //        Meal meal = Meal.builder().mealName()
         addressRepository.save(address);
-        Event event = new Event();
+        Event event =Event.builder().build();
         event.setName(eventDto.getName());
         event.setDescription(eventDto.getDescription());
         event.setEstimatedPrice(eventDto.getEstimatedPrice());
