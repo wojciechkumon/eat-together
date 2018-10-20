@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class MealDto {
 
-    String mealName;
+    String name;
     String ingredients;
     List<IntoleranceType> intolerances;
 }

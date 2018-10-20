@@ -84,7 +84,7 @@ public class EventAddressService {
 
     private Meal mapMeal(MealDto mealDto) {
         return Meal.builder()
-                .mealName(mealDto.getMealName())
+                .mealName(mealDto.getName())
                 .ingredients(mealDto.getIngredients())
                 .intolerances(mealDto.getIntolerances().stream().map(intoleranceType -> Intolerance.builder().intoleranceType(intoleranceType).build()).collect(Collectors.toList())).build();
     }
