@@ -1,6 +1,7 @@
 package com.blackheronteam.EatTogether.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -18,8 +19,4 @@ public class Address {
     String zip;
     String phoneNumber;
     String country;
-    @OneToOne(targetEntity = User.class)
-    @JoinColumn(name = "id")
-    Long userId;
-
 }
