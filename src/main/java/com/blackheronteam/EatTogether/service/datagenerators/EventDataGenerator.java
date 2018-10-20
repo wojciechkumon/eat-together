@@ -49,11 +49,9 @@ public class EventDataGenerator implements Generator {
                                         "1 tbsp olive oil\n" +
                                         "knob of butter\n" +
                                         "1 large onion\n" +
-                                        ", roughly chopped\n" +
                                         "500g small Forestière or Portobello mushrooms, sliced\n" +
                                         "2 large garlic cloves, chopped\n" +
                                         "150g pack creamy blue cheese (we used Danish blue)\n" +
-                                        "small pack parsley\n" +
                                         ", chopped").build(),
 
                         Meal.builder()
@@ -64,7 +62,6 @@ public class EventDataGenerator implements Generator {
                                         "2 onions\n" +
                                         ", finely chopped\n" +
                                         "250g bag spinach\n" +
-                                        "5 slices white bread, blitzed into breadcrumbs (or 150g dried breadcrumbs)\n" +
                                         "good grating of fresh nutmeg\n" +
                                         "100g mature cheddar, grated\n" +
                                         "40g parmesan\n" +
