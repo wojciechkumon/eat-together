@@ -51,7 +51,7 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
         phoneNumber,
         zip,
         country,
-        meals
+        meals: meals.filter(meal => meal.name)
       }),
       headers: {
         'Content-Type': 'application/json'
