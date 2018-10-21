@@ -16,7 +16,10 @@ class EventDetailsModal extends React.PureComponent<EventDetailsModalProps> {
   render() {
     const {myEvent} = this.props;
     if (!myEvent) {
-      return null;
+      return (
+        <EventDetailsModalDialog id="event-detail-modal" className="modal fade" tabIndex={-1} role="dialog">
+        </EventDetailsModalDialog>
+      );
     }
 
     return (
@@ -52,9 +55,8 @@ class EventDetailsModal extends React.PureComponent<EventDetailsModalProps> {
               <div className="d-flex flex-nowrap justify-content-between">
                 <h4>{myEvent.organizer.firstName}</h4>
                 <h4>{this.hostRatingRender(myEvent.organizer.rating).map((X, i) => <X key={i}/>)}                                  </h4>
-                <hr/>
               </div>
-
+              <hr/>
               <label>Meals</label>
               {myEvent.event.meals.map(meal =>
                 <MealItem key={meal.name} meal={meal}/>
