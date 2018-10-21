@@ -36,6 +36,6 @@ public class Event {
     @OneToMany(cascade = CascadeType.ALL)
     List<Meal> meals;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     List<User> participants;
 }
