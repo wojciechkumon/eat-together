@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import {MyEvent} from './Event';
-import FoodCategorySelector from './FoodCategorySelector';
 
-import EventCard from "./EventCard";
+import EventCard from './EventCard';
+import FoodCategorySelector from './FoodCategorySelector';
 
 class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState> {
 
@@ -32,7 +32,7 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
     const {selectedCuisine, price} = this.state;
     let filteredEvents = !selectedCuisine ? allEvents
       : allEvents.filter(myEvent => myEvent.event.cuisines.map(x => x.cuisineType).includes(selectedCuisine.toUpperCase()));
-    return filteredEvents.filter(myEvent => myEvent.event.estimatedPrice <= price);
+    return filteredEvents.filter(myEvent => (myEvent.event.estimatedPrice / 100.0) <= price);
   };
 
   render() {

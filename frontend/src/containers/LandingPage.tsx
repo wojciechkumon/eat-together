@@ -3,13 +3,13 @@ import {RouteComponentProps, withRouter} from 'react-router';
 import styled from 'styled-components';
 import AboutModal from '../components/AboutModal';
 import {MyEvent} from '../components/Event';
+import EventDetailsModal from '../components/EventDetailsModal';
 import Map, {MarkerData} from '../components/Map';
 import MyEventsModal from '../components/MyEventsModal';
 import NewEventModal from '../components/NewEventModal';
 import SearchModal from '../components/SearchModal';
 import {appConfig} from '../config/appConfig';
 import {checkStatus, withToken} from '../utils/api';
-import EventDetailsModal from "../components/EventDetailsModal";
 
 class LandingPage extends React.PureComponent<RouteComponentProps<{}>, LandingPageState> {
   state = {
@@ -36,7 +36,8 @@ class LandingPage extends React.PureComponent<RouteComponentProps<{}>, LandingPa
       .then(checkStatus)
       .then(response => response.json())
       .then(json => this.setState({allEvents: json}))
-      .catch(() => console.error('error'));
+      .catch(() => console.error('error'))
+      .finally(() => setTimeout(this.findAll, 1000));
   };
 
   render() {

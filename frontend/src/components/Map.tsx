@@ -3,6 +3,8 @@ import * as React from 'react';
 class Map extends React.PureComponent<MapProps, MapState> {
   private map;
   private markers: any[] = [];
+  private lastZoom: any;
+  private lastPosition: any;
 
   componentDidMount() {
     this.map = (window as any).L.map('mapid');
@@ -12,18 +14,23 @@ class Map extends React.PureComponent<MapProps, MapState> {
   render() {
     const {position, zoom, markers} = this.props;
     if (this.map) {
-      this.map.setView(position, zoom);
-
-      this.markers.forEach(m => m.remove());
-      this.markers = [];
-      markers.map(
-        marker => {
-          const mark = (window as any).L.marker(marker.position);
-          mark.addTo(this.map);
-          mark.bindPopup(marker.text);
-          this.markers.push(mark);
-        }
-      );
+      if (this.lastZoom !== zoom || this.lastPosition !== position) {
+        this.map.setView(position, zoom);
+        this.lastZoom = zoom;
+        this.lastPosition = position;
+      }
+      if (this.markers.length !== markers.length) {
+        this.markers.forEach(m => m.remove());
+        this.markers = [];
+        markers.map(
+          marker => {
+            const mark = (window as any).L.marker(marker.position);
+            mark.addTo(this.map);
+            mark.bindPopup(marker.text);
+            this.markers.push(mark);
+          }
+        );
+      }
     }
 
     return (<div id="mapid" className="h-100 flex-grow-1" style={{zIndex: 10}}/>)
