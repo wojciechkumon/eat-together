@@ -6,7 +6,8 @@ class FoodCategoryItem extends React.PureComponent<FoodCategoryItemProps> {
   render() {
     const {foodIcon, foodName, type, selected, toggle} = this.props;
     return (
-      <label className={`btn shadow-none ${selected ? 'active' : ''}`} onClick={() => toggle(foodName.toUpperCase())}>
+      <label className={`btn shadow-none ${selected ? 'active' : ''} ${selected && type == 'radio' ? 'order-1' : ''}`}
+             onClick={() => toggle(foodName.toUpperCase())}>
         <input type={type}
                checked={selected}
                onChange={() => toggle(foodName.toUpperCase())}
