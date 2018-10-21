@@ -101,7 +101,7 @@ class LandingPage extends React.PureComponent<RouteComponentProps<{}>, LandingPa
         <SearchModal setMap={setMap} allEvents={allEvents} setEvent={setEvent}/>
         <AboutModal/>
         <NewEventModal/>
-        <MyEventsModal/>
+        <MyEventsModal allEvents={allEvents}/>
         <EventDetailsModal myEvent={myEvent}/>
       </>
     );

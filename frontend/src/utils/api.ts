@@ -14,3 +14,8 @@ export const withToken = url => {
   const tokenWrapper = JSON.parse(window.localStorage.getItem(appConfig.localStorage.tokenWrapperKey)!!);
   return `${url}?access_token=${tokenWrapper.token}`;
 };
+
+export const getCurrentEmail = () => {
+  const tokenWrapper = JSON.parse(window.localStorage.getItem(appConfig.localStorage.tokenWrapperKey)!!);
+  return tokenWrapper.email;
+};
