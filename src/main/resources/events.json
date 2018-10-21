@@ -1,0 +1,156 @@
+[{
+  "name": "Flavorful crab soup",
+  "description": "Try this hearty soup that incorporates the best of vegetable soup and flavorful crab. I break whole crabs and claws into pieces and drop them into the soup to cook, then serve it with saltine crackers and a cold beer.",
+  "estimatedPrice": 2800,
+  "currency": "EUR",
+  "organizerId": 1,
+  "maxParticipants": 2,
+  "cuisines": [{"cuisineType": "ASIAN"}],
+  "dateTime": "2018-01-23T00:41",
+  "address": {
+    "city": "Warszawa",
+    "phoneNumber": "423 434 223",
+    "streetWithNumber": "Wolska 19",
+    "country": "Polska",
+    "zip": "01-381"},
+  "meals": [{
+    "name": "Crab soup",
+    "ingredients": "tomatoes,rutabaga,cabbage,onion,carrot,corn,beans",
+    "intolerances": [{"intoleranceType": "GLUTEN"}]
+  }]
+},
+  {
+    "name": "Lighter Chicken Fettuccine Alfredo",
+    "description": "Chicken fettuccine alfredo is lightened by substituting some of the heavy cream with chicken broth.",
+    "estimatedPrice": 3000,
+    "currency": "USD",
+    "organizerId": 1,
+    "maxParticipants": 3,
+    "cuisines": [{"cuisineType": "PASTA"}],
+    "dateTime": "2018-01-30T00:41",
+    "address": {
+      "city": "Warszawa",
+      "phoneNumber": "665 423 223",
+      "streetWithNumber": "Mlynarska 2",
+      "country": "Polska",
+      "zip": "01-205"},
+    "meals": [{
+      "name": "Spaghetti",
+      "ingredients": "chicken,garlic,pepper,heavy cream,egg,fettucine",
+      "intolerances": [{"intoleranceType": "GLUTEN"}]
+    }]
+  },
+  {
+    "name": "Spinach and feta filo pie",
+    "description": "This cheesy, flaky pie makes a cracking weekend lunch. Serve with a selection of salads and flatbreads, or simply by itself with a dollop of thick, seasoned yoghurt.",
+    "estimatedPrice": 2500,
+    "currency": "EUR",
+    "organizerId": 1,
+    "maxParticipants": 4,
+    "cuisines": [{"cuisineType": "VEGE"}],
+    "dateTime": "2018-05-28T18:00",
+    "address": {
+      "city": "Warszawa",
+      "phoneNumber": "654 865 345",
+      "streetWithNumber": "Gieldowa 7",
+      "country": "Polska",
+      "zip": "05-077"},
+    "meals": [{
+      "name": "Filo pie",
+      "ingredients": "pine nuts,feta cheese,lemon,olive oil",
+      "intolerances": [{"intoleranceType": "GLUTEN"}]
+    }]
+  },
+  {
+    "name": "Italian pasta",
+    "description": "Our best ever spaghetti Bolognese is super easy and a true Italian classic with a meaty, chilli sauce.",
+    "estimatedPrice": 4000,
+    "currency": "EUR",
+    "organizerId": 2,
+    "maxParticipants": 4,
+    "cuisines": [{"cuisineType": "PASTA"}],
+    "dateTime": "2018-08-15T14:30",
+    "address": {
+      "city": "Warszawa",
+      "phoneNumber": "500 430 ***",
+      "streetWithNumber": "Wybrzeze Kosciuszkowskie 20",
+      "country": "Polska",
+      "zip": "00-390"},
+    "meals": [{
+      "name": "Spaghetti Bolognese",
+      "ingredients": "olive oil,smoked streaky bacon,onions,carrots,garlic cloves,beef mince",
+      "intolerances": [{"intoleranceType": "FISH"}]
+    }]
+  },
+  {
+    "name": "Traditional polish dinner",
+    "description": "Nothing soothes, nourishes and comforts like homemade chicken broth. Dumplings filled with tender pork, flavored with fresh ginger, green onion, and sesame oil.",
+    "estimatedPrice": 4500,
+    "currency": "EUR",
+    "organizerId": 1,
+    "maxParticipants": 4,
+    "cuisines": [{"cuisineType": "DUMPLINGS"}],
+    "dateTime": "2018-02-21T15:00",
+    "address": {
+      "city": "Warszawa",
+      "phoneNumber": "654 865 345",
+      "streetWithNumber": "Gieldowa 7",
+      "country": "Polska",
+      "zip": "05-077"},
+    "meals": [{
+      "name": "Broth",
+      "ingredients": "chicken,celery,carrots,onion,garlic,parsley,thyme",    "intolerances": [{"intoleranceType": "GLUTEN"}]
+    },
+      {
+        "name": "Homemade Dumplings",
+        "ingredients": "four,vegetable oil,parsley,pork,cabbage",
+        "intolerances": [{"intoleranceType": "GLUTEN"}]
+      }]
+  },
+  {
+    "name": "Healthy dessert",
+    "description": "cookies are lightly sweetened, with a crisp outside and soft, tender inside– just the way you like them",
+    "estimatedPrice": 3700,
+    "currency": "USD",
+    "organizerId": 1,
+    "maxParticipants": 3,
+    "cuisines": [{"cuisineType": "VEGE"},{"cuisineType": "CAKE"}],
+    "dateTime": "2018-11-30T03:00",
+    "address": {
+      "city": "Warszawa",
+      "phoneNumber": "500 430 ***",
+      "streetWithNumber": "Chmielna 26",
+      "country": "Polska",
+      "zip": "00-844"},
+    "meals": [{
+      "name": "VEGAN & GLUTEN-FREE CHOCOLATE CHIP COOKIES",
+      "ingredients": "gluten-free oat flour,coconut sugar,chia eggs,melted coconut oil,vanilla extract,salt,dark chocolate chips",
+      "intolerances": [{"intoleranceType": "GLUTEN"},{"intoleranceType": "NUTS"}]
+    }]
+  },
+  {
+    "name": "Vegetarian supper: Gnocchi and Burger",
+    "description": "Soft, creamy goat's cheese or a deliciously strong blue cheese both work well in this easy veggie supper that's on the table in just 20 minutes and Green Burger",
+    "estimatedPrice": 2750,
+    "currency": "USD",
+    "organizerId": 1,
+    "maxParticipants": 5,
+    "cuisines": [{"cuisineType": "VEGE"}],
+    "dateTime": "2018-12-15T04:00",
+    "address": {
+      "city": "Warszawa",
+      "phoneNumber": "30 714 ***",
+      "streetWithNumber": "aleja Niepodleglosci 213",
+      "country": "Polska",
+      "zip": "02-086"},
+    "meals": [{
+      "name": "Gnocchi with mushrooms & blue cheese",
+      "ingredients": "gnocchi,olive oil,butter,onion,mushrooms,garlic,creamy blu,cheese",
+      "intolerances": [{"intoleranceType": "FISH"}]
+    },
+      {
+        "name": "Green burgers",
+        "ingredients": "olive oil,onion,spinach,cheddar,parmesan,eggs,plain flour",
+        "intolerances": [{"intoleranceType": "FISH"}]
+      }]
+  }]

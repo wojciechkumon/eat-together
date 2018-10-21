@@ -27,6 +27,7 @@ repositories {
 
 
 dependencies {
+	compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.9.7'
 	compile('javax.xml.bind:jaxb-api:2.3.0')
 	implementation 'com.google.guava:guava:22.0'
 
