@@ -3,6 +3,8 @@ import {MyEvent} from './Event';
 import {foodCategories} from "./foodCategories";
 import MealItem from "./MealItem";
 import styled from "styled-components";
+import {checkStatus, withToken} from "../utils/api";
+import {appConfig} from "../config/appConfig";
 
 class EventDetailsModal extends React.PureComponent<EventDetailsModalProps> {
   hostRatingRender = (hostRating) => {
@@ -13,17 +15,49 @@ class EventDetailsModal extends React.PureComponent<EventDetailsModalProps> {
     return result
   };
 
+  submit = e => {
+    e.preventDefault();
+    const {myEvent} = this.props;
+    let eventId;
+    if (myEvent) {
+      eventId = myEvent.event.id
+    } else {
+      eventId = 0
+    }
+    fetch(new Request(withToken(appConfig.api.join), {
+      method: 'POST',
+      body: eventId,
+      headers: {'Content-Type': 'application/json'}
+    }))
+      .then(checkStatus)
+      .then(response => {
+        (window as any).$('#event-detail-modal').modal('hide');
+      })
+      .catch(() => console.error('error'));
+  };
+
   render() {
     const {myEvent} = this.props;
     if (!myEvent) {
       return (
         <EventDetailsModalDialog id="event-detail-modal" className="modal fade" tabIndex={-1} role="dialog">
+          <div className="modal-dialog m-0 mw-100" role="document">
+            <div className="modal-content">
+              <div className="modal-header background-et">
+                <h6 className="modal-title text-white">Title</h6>
+                <button type="button" className="close text-white" data-dismiss="modal"
+                        aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+          </div>
         </EventDetailsModalDialog>
       );
     }
 
     return (
-      <EventDetailsModalDialog id="event-detail-modal" className="modal fade" tabIndex={-1} role="dialog">
+      <EventDetailsModalDialog className="modal fade" id="event-detail-modal" tabIndex={-1} role="dialog">
         <div className="modal-dialog m-0 mw-100" role="document">
           <div className="modal-content">
             <div className="modal-header background-et">
@@ -63,9 +97,7 @@ class EventDetailsModal extends React.PureComponent<EventDetailsModalProps> {
               )}
 
               <div className="d-flex justify-content-center">
-                <button type="button" className="btn btn-success" onClick={() => {
-                }}>Join!
-                </button>
+                <button type="button" className="btn btn-success" onClick={this.submit}>Join!</button>
               </div>
             </div>
           </div>

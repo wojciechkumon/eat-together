@@ -31,7 +31,7 @@ class EventCard extends React.PureComponent<EventCardProps> {
         </div>
         <div className="card-header d-flex justify-content-between">
           <span><i className="far fa-clock"/>{myEvent.event.dateTime}</span>
-          <span>{myEvent.event.estimatedPrice}</span>
+          <span>{myEvent.event.estimatedPrice} {myEvent.event.currency}</span>
           <span><i className="fa fa-user"/>{myEvent.event.participants.length}/{myEvent.event.maxParticipants}</span>
         </div>
         <div className="card-body p-2">
