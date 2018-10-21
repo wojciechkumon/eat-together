@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --progress --mode development --colors --config webpack.dev.js",
     "start:dist": "yarn dist && yarn serve:dist",
-    "dist": "yarn nlv && yarn linter && yarn clean && webpack --mode production --colors --config webpack.prod.js",
+    "dist": "yarn nlv && yarn clean && webpack --mode production --colors --config webpack.prod.js",
     "dist:context": "yarn dist --env.contextPath=/eatTogether",
     "serve:dist": "node serve-dist.js",
     "serve:dist:context": "yarn serve:dist /demo/tp",

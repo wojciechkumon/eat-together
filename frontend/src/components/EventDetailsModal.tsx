@@ -109,21 +109,21 @@ class EventDetailsModal extends React.PureComponent<EventDetailsModalProps> {
 }
 
 const EventDetailsModalDialog = styled.div`
-        overflow: auto;
-        
-        .modal-header {
-        background - color: #3B653D;
-        color: #FFFFFF;
-      }
+overflow: auto;
 
-        .modal-header * {
-        color: #FFFFFF;
-      }
+.modal-header {
+background-color: #3B653D;
+color: #FFFFFF;
+}
 
-        .modal-content {
-        border: 0;
-      }
-        `;
+.modal-header * {
+color: #FFFFFF;
+}
+
+.modal-content {
+border: 0;
+}
+`;
 
 interface EventDetailsModalProps {
   myEvent?: MyEvent;
