@@ -41,36 +41,32 @@ class LoginPage extends React.PureComponent<RouteComponentProps<{}>, LoginPageSt
     const {email, password, loggingIn, error} = this.state;
 
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-sm text-center">
-            <Logo>Eat Together</Logo>
-          </div>
+      <div className="h-100 d-flex flex-column align-items-center justify-content-center">
+        <div className="text-center mb-5">
+          <Logo>Eat Together</Logo>
         </div>
-        <div className="flex-row">
-          <div className="d-flex justify-content-center">
-            <form onSubmit={this.submit}
-                  className="d-flex flex-column justify-content-center">
-              <div className="form-group">
-                <input value={email} onChange={e => this.setState({email: e.target.value})}
-                       disabled={loggingIn}
-                       type="email" className="form-control" id="login-email"
-                       aria-describedby="emailHelp"
-                       style={error ? {borderColor: 'red', borderWidth: '1px'} : undefined}
-                       placeholder="Email" autoComplete="username"/>
-              </div>
-              <div className="form-group">
-                <input value={password} onChange={e => this.setState({password: e.target.value})}
-                       disabled={loggingIn}
-                       type="password" className="form-control" id="exampleInputPassword1"
-                       placeholder="Password"
-                       style={error ? {borderColor: 'red', borderWidth: '1px'} : undefined}
-                       autoComplete="current-password"/>
-              </div>
-              <button type="submit" className="btn btn-secondary" disabled={loggingIn}>Eat & Cook!
-              </button>
-            </form>
-          </div>
+        <div className="w-50">
+          <form onSubmit={this.submit}
+                className="d-flex flex-column justify-content-center">
+            <div className="form-group">
+              <input value={email} onChange={e => this.setState({email: e.target.value})}
+                     disabled={loggingIn}
+                     type="email" className="form-control" id="login-email"
+                     aria-describedby="emailHelp"
+                     style={error ? {borderColor: 'red', borderWidth: '1px'} : undefined}
+                     placeholder="Email" autoComplete="username"/>
+            </div>
+            <div className="form-group">
+              <input value={password} onChange={e => this.setState({password: e.target.value})}
+                     disabled={loggingIn}
+                     type="password" className="form-control" id="exampleInputPassword1"
+                     placeholder="Password"
+                     style={error ? {borderColor: 'red', borderWidth: '1px'} : undefined}
+                     autoComplete="current-password"/>
+            </div>
+            <button type="submit" className="btn btn-secondary" disabled={loggingIn}>Eat & Cook!
+            </button>
+          </form>
         </div>
       </div>
     );
@@ -78,11 +74,10 @@ class LoginPage extends React.PureComponent<RouteComponentProps<{}>, LoginPageSt
 }
 
 const Logo = styled.span`
-  font-family: 'Amatic SC', cursive !important;
-  color: #ffffff !important;
-  font-size: 25vw !important;
-  alignment: center !important;
-`;
+      font-family: 'Amatic SC', cursive !important;
+      color: #ffffff !important;
+      font-size: 25vw !important;
+      `;
 
 interface LoginPageState {
   email: string;
