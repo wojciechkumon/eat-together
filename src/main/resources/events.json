@@ -52,9 +52,9 @@
     "address": {
       "city": "Warszawa",
       "phoneNumber": "654 865 345",
-      "streetWithNumber": "Gieldowa 7",
+      "streetWithNumber": "Dzielna 21",
       "country": "Polska",
-      "zip": "05-077"},
+      "zip": "01-029"},
     "meals": [{
       "name": "Filo pie",
       "ingredients": "pine nuts,feta cheese,lemon,olive oil",
@@ -94,9 +94,9 @@
     "address": {
       "city": "Warszawa",
       "phoneNumber": "654 865 345",
-      "streetWithNumber": "Gieldowa 7",
+      "streetWithNumber": "Dluga 52",
       "country": "Polska",
-      "zip": "05-077"},
+      "zip": "00-241"},
     "meals": [{
       "name": "Broth",
       "ingredients": "chicken,celery,carrots,onion,garlic,parsley,thyme",    "intolerances": [{"intoleranceType": "GLUTEN"}]
@@ -140,9 +140,9 @@
     "address": {
       "city": "Warszawa",
       "phoneNumber": "30 714 ***",
-      "streetWithNumber": "aleja Niepodleglosci 213",
+      "streetWithNumber": "Piekna 11",
       "country": "Polska",
-      "zip": "02-086"},
+      "zip": "00-549"},
     "meals": [{
       "name": "Gnocchi with mushrooms & blue cheese",
       "ingredients": "gnocchi,olive oil,butter,onion,mushrooms,garlic,creamy blu,cheese",
