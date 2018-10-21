@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {MyEvent} from './Event';
 import {foodCategories} from "./foodCategories";
+import {twoDecimalPlaces} from "../utils/prices";
 
 class EventCard extends React.PureComponent<EventCardProps> {
   hostRatingRender = (hostRating) => {
@@ -31,7 +32,7 @@ class EventCard extends React.PureComponent<EventCardProps> {
         </div>
         <div className="card-header d-flex justify-content-between">
           <span><i className="far fa-clock"/>{myEvent.event.dateTime}</span>
-          <span>{myEvent.event.estimatedPrice} {myEvent.event.currency}</span>
+          <span>{twoDecimalPlaces(myEvent.event.estimatedPrice / 100.0)} {myEvent.event.currency}</span>
           <span><i className="fa fa-user"/>{myEvent.event.participants.length}/{myEvent.event.maxParticipants}</span>
         </div>
         <div className="card-body p-2">

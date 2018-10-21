@@ -5,6 +5,7 @@ import MealItem from "./MealItem";
 import styled from "styled-components";
 import {checkStatus, withToken} from "../utils/api";
 import {appConfig} from "../config/appConfig";
+import {twoDecimalPlaces} from "../utils/prices";
 
 class EventDetailsModal extends React.PureComponent<EventDetailsModalProps> {
   hostRatingRender = (hostRating) => {
@@ -70,7 +71,7 @@ class EventDetailsModal extends React.PureComponent<EventDetailsModalProps> {
             <div className="modal-body h-100 flex-grow-1">
               <div className="d-flex flex-nowrap justify-content-between">
                 <span><i className="far fa-clock"/>{myEvent.event.dateTime}</span>
-                <span>{myEvent.event.estimatedPrice} {myEvent.event.currency}</span>
+                <span>{twoDecimalPlaces(myEvent.event.estimatedPrice / 100.0)} {myEvent.event.currency}</span>
                 <span><i className="fa fa-user"/>{myEvent.event.participants.length}/{myEvent.event.maxParticipants}</span>
               </div>
               <span style={{fontSize: '25pt'}}>

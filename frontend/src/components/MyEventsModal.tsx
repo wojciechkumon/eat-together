@@ -26,7 +26,7 @@ class MyEventsModal extends React.PureComponent<MyEventsModalProps> {
                   <EventCard key={myEvent.event.id} myEvent={myEvent} buttons={[]}/>
                 )}
                 <hr/>
-                <h6>Joined events</h6>
+                <h6>You are participating in</h6>
                 {allEvents.filter(myEvent =>
                   myEvent.event.participants.filter(participant => participant.username === email).length > 0)
                   .map(myEvent => <EventCard key={myEvent.event.id} myEvent={myEvent} buttons={[]}/>)
