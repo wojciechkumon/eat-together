@@ -1,3 +1,7 @@
+## Mercari Euro Hack 2018
+
+The following project has been created during [Mercari Euro Hack 2018](https://challengerocket.com/mercari) 24h hackathon.
+
 # EatTogether 
 
 Want to cook something amazing and share with others? Do you want to meet friends and eat something new? Help the environment and don’t waste food anymore! Do you have some specific food preferences or intolerance? Meet foodie friends like you!

@@ -16,7 +16,7 @@ class NewEventModal extends React.PureComponent<{}, NewEventModalState> {
     maxParticipants: 4,
     cuisines: ['ASIAN', 'VEGE', 'CAKE'],
     dateTime: '2018-10-23T10:00',
-    streetWithNumber: 'aleja Niepodległości 213',
+    streetWithNumber: 'aleja Niepodleglosci 213',
     city: 'Warszawa',
     phoneNumber: '790458470',
     zip: '02-086',
