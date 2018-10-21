@@ -112,7 +112,7 @@ class SearchModal extends React.PureComponent<SearchModalProps, SearchModalState
                 {filteredEvents.map(myEvent =>
                   <EventCard key={myEvent.event.id} myEvent={myEvent} buttons={[
                     () => <a className="btn btn-sm btn-outline-dark" onClick={() => {
-                      setMap([myEvent.event.latitude, myEvent.event.longitude], 13);
+                      setMap([myEvent.event.latitude, myEvent.event.longitude], 16);
                       (window as any).$('#search-modal').modal('hide');
                     }} href="#">See on map</a>,
                     () => <a className="btn btn-sm btn-outline-dark" onClick={() => {

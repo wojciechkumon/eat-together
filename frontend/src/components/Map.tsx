@@ -1,21 +1,32 @@
 import * as React from 'react';
-import {Map as LeafletMap, Marker, Popup, TileLayer} from 'react-leaflet';
 
-class Map extends React.PureComponent<MapProps> {
+class Map extends React.PureComponent<MapProps, MapState> {
+  private map;
+  private markers: any[] = [];
+
+  componentDidMount() {
+    this.map = (window as any).L.map('mapid');
+    (window as any).L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicGZlZG9yb3dpYXQiLCJhIjoiY2puYnVjbmoxMDd1ejN3b2xrcWVoeWR2aSJ9.9ryAquSevShTqIrxmnL4ag').addTo(this.map);
+  }
 
   render() {
     const {position, zoom, markers} = this.props;
-    return (
-      <LeafletMap center={position} zoom={zoom} className="h-100 flex-grow-1" style={{zIndex: 10}}>
-        <TileLayer
-          url="https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicGZlZG9yb3dpYXQiLCJhIjoiY2puYnVjbmoxMDd1ejN3b2xrcWVoeWR2aSJ9.9ryAquSevShTqIrxmnL4ag"
-        />
-        {markers.map(marker =>
-          <Marker key={marker.position} position={position}>
-            <Popup>{marker.text}</Popup>
-          </Marker>)}
-      </LeafletMap>
-    )
+    if (this.map) {
+      this.map.setView(position, zoom);
+
+      this.markers.forEach(m => m.remove());
+      this.markers = [];
+      markers.map(
+        marker => {
+          const mark = (window as any).L.marker(marker.position);
+          mark.addTo(this.map);
+          mark.bindPopup(marker.text);
+          this.markers.push(mark);
+        }
+      );
+    }
+
+    return (<div id="mapid" className="h-100 flex-grow-1" style={{zIndex: 10}}/>)
   }
 }
 
@@ -23,6 +34,10 @@ interface MapProps {
   position: number[];
   zoom: number;
   markers: MarkerData[];
+}
+
+interface MapState {
+  markers: any[];
 }
 
 export interface MarkerData {
